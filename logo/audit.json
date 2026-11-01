@@ -1,0 +1,335 @@
+{
+  "desktop-1440": {
+    "errs": [],
+    "info": {
+      "label": "Strumpverket, till startsidan",
+      "imgs": [
+        {
+          "cls": "wordmark__plate",
+          "alt": "",
+          "w": 330,
+          "h": 95,
+          "top": 51,
+          "display": "block",
+          "opacity": "1",
+          "anim": "plate-in",
+          "complete": true,
+          "nat": 2362
+        },
+        {
+          "cls": "wordmark__plain",
+          "alt": "",
+          "w": 196,
+          "h": 19.2,
+          "top": 127,
+          "display": "block",
+          "opacity": "0",
+          "anim": "plate-in",
+          "complete": true,
+          "nat": 2114
+        }
+      ],
+      "header": {
+        "top": 34.59375,
+        "h": 129
+      },
+      "theme": "#111111",
+      "icons": [
+        "http://127.0.0.1:8731/strumpverket/favicon.ico",
+        "http://127.0.0.1:8731/strumpverket/favicon.svg",
+        "http://127.0.0.1:8731/strumpverket/favicon-32.png",
+        "http://127.0.0.1:8731/strumpverket/favicon-16.png",
+        "http://127.0.0.1:8731/strumpverket/apple-touch-icon.png",
+        "http://127.0.0.1:8731/strumpverket/site.webmanifest"
+      ],
+      "noAlt": 0,
+      "noDims": []
+    },
+    "scrolled": [
+      {
+        "cls": "wordmark__plate",
+        "top": -47,
+        "w": 330,
+        "opacity": "0",
+        "vis": "visible"
+      },
+      {
+        "cls": "wordmark__plain",
+        "top": 22,
+        "w": 196,
+        "opacity": "1",
+        "vis": "visible"
+      }
+    ],
+    "cls": [],
+    "clsTotal": 0,
+    "axe": [
+      {
+        "id": "region",
+        "impact": "moderate",
+        "n": 1,
+        "nodes": [
+          ".demo-bar :: Fix any of the following:\n  Some page content is not contained by landmarks"
+        ]
+      }
+    ]
+  },
+  "mobile-390": {
+    "errs": [],
+    "info": {
+      "label": "Strumpverket, till startsidan",
+      "imgs": [
+        {
+          "cls": "wordmark__plate",
+          "alt": "",
+          "w": 0,
+          "h": 0,
+          "top": 0,
+          "display": "none",
+          "opacity": "1",
+          "anim": "plate-in",
+          "complete": true,
+          "nat": 2362
+        },
+        {
+          "cls": "wordmark__plain",
+          "alt": "",
+          "w": 168,
+          "h": 16.4,
+          "top": 58,
+          "display": "block",
+          "opacity": "1",
+          "anim": "plate-in",
+          "complete": true,
+          "nat": 2114
+        }
+      ],
+      "header": {
+        "top": 34.59375,
+        "h": 65
+      },
+      "theme": "#111111",
+      "icons": [
+        "http://127.0.0.1:8731/strumpverket/favicon.ico",
+        "http://127.0.0.1:8731/strumpverket/favicon.svg",
+        "http://127.0.0.1:8731/strumpverket/favicon-32.png",
+        "http://127.0.0.1:8731/strumpverket/favicon-16.png",
+        "http://127.0.0.1:8731/strumpverket/apple-touch-icon.png",
+        "http://127.0.0.1:8731/strumpverket/site.webmanifest"
+      ],
+      "noAlt": 0,
+      "noDims": []
+    },
+    "scrolled": [
+      {
+        "cls": "wordmark__plate",
+        "top": 0,
+        "w": 0,
+        "opacity": "1",
+        "vis": "visible"
+      },
+      {
+        "cls": "wordmark__plain",
+        "top": 24,
+        "w": 168,
+        "opacity": "1",
+        "vis": "visible"
+      }
+    ],
+    "cls": [],
+    "clsTotal": 0,
+    "axe": [
+      {
+        "id": "region",
+        "impact": "moderate",
+        "n": 1,
+        "nodes": [
+          ".demo-bar :: Fix any of the following:\n  Some page content is not contained by landmarks"
+        ]
+      }
+    ]
+  },
+  "tablet-900": {
+    "errs": [],
+    "info": {
+      "label": "Strumpverket, till startsidan",
+      "imgs": [
+        {
+          "cls": "wordmark__plate",
+          "alt": "",
+          "w": 0,
+          "h": 0,
+          "top": 0,
+          "display": "none",
+          "opacity": "1",
+          "anim": "plate-in",
+          "complete": true,
+          "nat": 2362
+        },
+        {
+          "cls": "wordmark__plain",
+          "alt": "",
+          "w": 196,
+          "h": 19.2,
+          "top": 57,
+          "display": "block",
+          "opacity": "1",
+          "anim": "plate-in",
+          "complete": true,
+          "nat": 2114
+        }
+      ],
+      "header": {
+        "top": 34.59375,
+        "h": 65
+      },
+      "theme": "#111111",
+      "icons": [
+        "http://127.0.0.1:8731/strumpverket/favicon.ico",
+        "http://127.0.0.1:8731/strumpverket/favicon.svg",
+        "http://127.0.0.1:8731/strumpverket/favicon-32.png",
+        "http://127.0.0.1:8731/strumpverket/favicon-16.png",
+        "http://127.0.0.1:8731/strumpverket/apple-touch-icon.png",
+        "http://127.0.0.1:8731/strumpverket/site.webmanifest"
+      ],
+      "noAlt": 0,
+      "noDims": []
+    },
+    "scrolled": [
+      {
+        "cls": "wordmark__plate",
+        "top": 0,
+        "w": 0,
+        "opacity": "1",
+        "vis": "visible"
+      },
+      {
+        "cls": "wordmark__plain",
+        "top": 22,
+        "w": 196,
+        "opacity": "1",
+        "vis": "visible"
+      }
+    ],
+    "cls": [],
+    "clsTotal": 0,
+    "axe": [
+      {
+        "id": "region",
+        "impact": "moderate",
+        "n": 1,
+        "nodes": [
+          ".demo-bar :: Fix any of the following:\n  Some page content is not contained by landmarks"
+        ]
+      }
+    ]
+  },
+  "desktop-1440-reduced": {
+    "errs": [],
+    "info": {
+      "label": "Strumpverket, till startsidan",
+      "imgs": [
+        {
+          "cls": "wordmark__plate",
+          "alt": "",
+          "w": 330,
+          "h": 95,
+          "top": 51,
+          "display": "block",
+          "opacity": "1",
+          "anim": "none",
+          "complete": true,
+          "nat": 2362
+        },
+        {
+          "cls": "wordmark__plain",
+          "alt": "",
+          "w": 196,
+          "h": 19.2,
+          "top": 121,
+          "display": "block",
+          "opacity": "0",
+          "anim": "none",
+          "complete": true,
+          "nat": 2114
+        }
+      ],
+      "header": {
+        "top": 34.59375,
+        "h": 129
+      },
+      "theme": "#111111",
+      "icons": [
+        "http://127.0.0.1:8731/strumpverket/favicon.ico",
+        "http://127.0.0.1:8731/strumpverket/favicon.svg",
+        "http://127.0.0.1:8731/strumpverket/favicon-32.png",
+        "http://127.0.0.1:8731/strumpverket/favicon-16.png",
+        "http://127.0.0.1:8731/strumpverket/apple-touch-icon.png",
+        "http://127.0.0.1:8731/strumpverket/site.webmanifest"
+      ],
+      "noAlt": 0,
+      "noDims": []
+    },
+    "scrolled": [
+      {
+        "cls": "wordmark__plate",
+        "top": -47,
+        "w": 330,
+        "opacity": "0",
+        "vis": "visible"
+      },
+      {
+        "cls": "wordmark__plain",
+        "top": 22,
+        "w": 196,
+        "opacity": "1",
+        "vis": "visible"
+      }
+    ],
+    "cls": [],
+    "clsTotal": 0,
+    "axe": [
+      {
+        "id": "region",
+        "impact": "moderate",
+        "n": 1,
+        "nodes": [
+          ".demo-bar :: Fix any of the following:\n  Some page content is not contained by landmarks"
+        ]
+      }
+    ]
+  },
+  "manifest": {
+    "m": {
+      "name": "STRUMPVERKET",
+      "short_name": "STRUMPVERKET",
+      "start_url": "./",
+      "scope": "./",
+      "icons": [
+        {
+          "src": "android-chrome-192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        },
+        {
+          "src": "android-chrome-512.png",
+          "sizes": "512x512",
+          "type": "image/png"
+        }
+      ],
+      "theme_color": "#111111",
+      "background_color": "#F7F6F3",
+      "display": "standalone"
+    },
+    "iconStatus": [
+      [
+        "android-chrome-192.png",
+        200
+      ],
+      [
+        "android-chrome-512.png",
+        200
+      ]
+    ]
+  }
+}
