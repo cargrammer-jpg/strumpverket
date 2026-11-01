@@ -26,11 +26,15 @@
   --paper: #f7f6f3;
   --paper-2: #eeebe6;
   --paper-3: #e6e2db;
-  --ink: #121211;
+  --ink: #111111;
   --ink-2: #3f3c37;
   --muted: #625e57;
   --line: #d8d3cb;
-  --thread: #a0703f; /* the single warm accent: stitch lines only, never text */
+  /* Bronze, the single warm accent (brand/final/README.md). Both pass WCAG AA for text:
+     #8c5e36 on paper 5.15:1, #b8845a on ink 5.83:1. Never use the old #a0703f / #9a6b3f. */
+  --bronze: #8c5e36;      /* on light grounds */
+  --bronze-dark: #b8845a; /* on ink */
+  --thread: var(--bronze);
 
   --font-sans: "Schibsted Grotesk", "Grotesk Fallback", system-ui, sans-serif;
   --font-mono: "Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
@@ -50,7 +54,8 @@
 
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
-  --header-h: 4rem;
+  --header-h: 4rem;      /* visible sticky bar */
+  --masthead-h: 8rem;    /* desktop header at rest, room for the 330px plate plus clear space */
 
   color-scheme: light;
 }
@@ -134,33 +139,57 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 }
 .u-link:hover, .u-link:focus-visible { background-position: 0 100%; background-size: 100% 1px; }
 
-/* ---------- Wordmark ---------- */
-.wordmark { display: inline-flex; flex-direction: column; align-items: center; text-decoration: none; color: var(--ink); gap: 5px; }
-.wordmark__text {
-  display: flex; overflow: hidden;
-  font-weight: 700; font-size: 0.9375rem; letter-spacing: 0.22em; line-height: 1.1;
-  padding-left: 0.22em; /* optically center letterspaced caps */
-}
-.wordmark__text span { display: inline-block; }
-.wordmark__stitch { width: 100%; height: 4px; overflow: visible; }
-.wordmark__stitch .stitch-line { stroke: var(--thread); stroke-width: 1.5; stroke-dasharray: 5 4; }
-@media (min-width: 40rem) { .wordmark__text { font-size: 1.0625rem; } }
+/* ---------- Wordmark ----------
+   Brand rules (brand/final/README.md):
+   - Plate only at 330px wide or more; below that the plain wordmark (min 106px).
+   - Clear space on all sides >= 0.5 x cap height of T.
+     Plate 330px: cap 28px, clear 14px; in an 8rem (128px) bar it gets 16.5px above and below.
+     Plain 168px: cap 16px, clear 8px; in a 4rem bar it gets 24px above and below.
+   - No recolouring, stretching, outlines or shadows: the images are only revealed, faded and moved. */
+.wordmark { display: block; position: relative; text-decoration: none; color: var(--ink); padding: 8px; margin: -8px; }
+.wordmark img { display: block; max-width: none; height: auto; }
+.wordmark .wordmark__plate { display: none; width: 330px; }
+.wordmark__plain { width: 168px; }
+@media (min-width: 40rem) { .wordmark__plain { width: 196px; } }
 
-@media (prefers-reduced-motion: no-preference) {
-  .js .wordmark__text span {
-    transform: translateY(110%);
-    animation: letter-up 0.9s var(--ease-out) forwards;
-    animation-delay: calc(0.12s + var(--i) * 0.045s);
+/* Desktop: masthead with the plate. The header is 8rem tall but sticks at -4rem, so once scrolled only
+   its lower 4rem stays visible; the plate fades out and the plain wordmark fades in there. Only opacity
+   and translate change, so nothing below the header moves (no layout shift). */
+@media (min-width: 64rem) {
+  .site-header { top: calc(var(--header-h) - var(--masthead-h)); }
+  .site-header .wrap { position: relative; height: var(--masthead-h); }
+  .wordmark { position: static; }
+  .wordmark .wordmark__plate { display: block; transition: opacity 0.35s var(--ease-out); }
+  .wordmark__plain {
+    position: absolute; inset-inline: 0; bottom: calc((var(--header-h) - 19px) / 2); margin-inline: auto;
+    opacity: 0; visibility: hidden; translate: 0 6px;
+    transition: opacity 0.35s var(--ease-out), translate 0.5s var(--ease-out), visibility 0s linear 0.35s;
   }
-  .js .wordmark__stitch .stitch-reveal {
-    stroke-dasharray: 200; stroke-dashoffset: 200;
-    animation: draw 1.1s var(--ease-in-out) 0.75s forwards;
-  }
-  .wordmark:hover .stitch-line { animation: stitch-run 0.9s linear infinite; }
+  .header-left, .header-right { transition: translate 0.5s var(--ease-out); }
+  .site-header.is-scrolled .wordmark__plate { opacity: 0; }
+  .site-header.is-scrolled .wordmark__plain { opacity: 1; visibility: visible; translate: 0 0; transition-delay: 0s; }
+  .site-header.is-scrolled :is(.header-left, .header-right) { translate: 0 calc((var(--masthead-h) - var(--header-h)) / 2); }
 }
+
+/* Load: the mark is uncovered left to right like a plate coming out of its sleeve. Hover: a small lift.
+   Both only when motion is welcome; otherwise the mark is simply there. */
+@media (prefers-reduced-motion: no-preference) {
+  .js .wordmark :is(.wordmark__plate, .wordmark__plain) { animation: plate-in 1.1s var(--ease-out) 0.15s backwards; }
+  .wordmark .wordmark__plate { transition: opacity 0.35s var(--ease-out), translate 0.45s var(--ease-out); }
+  .wordmark:is(:hover, :focus-visible) .wordmark__plate,
+  .site-header.is-scrolled .wordmark:is(:hover, :focus-visible) .wordmark__plain { translate: 0 -2px; }
+}
+/* Reduced motion: keep the cross-fade (opacity only), drop every movement. */
+@media (prefers-reduced-motion: reduce) {
+  .wordmark img, .header-left, .header-right { translate: none !important; }
+}
+/* Shared keyframes (hero headline, add-to-cart tick) */
 @keyframes letter-up { to { transform: translateY(0); } }
 @keyframes draw { to { stroke-dashoffset: 0; } }
-@keyframes stitch-run { to { stroke-dashoffset: -18; } }
+@keyframes plate-in {
+  from { clip-path: inset(0 100% 0 0); }
+  to { clip-path: inset(0 0 0 0); }
+}
 
 /* ---------- Icon buttons ---------- */
 .icon-btn {
@@ -415,10 +444,11 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .socials a:hover, .socials a:focus-visible { background: var(--paper); color: var(--ink); border-color: var(--paper); translate: 0 -2px; }
 .socials svg { width: 18px; height: 18px; fill: currentColor; }
 .socials-col { grid-column: 1 / -1; }
-.footer-mark { margin-top: var(--s-9); }
-.footer-mark svg.mark { width: 100%; height: auto; }
-.footer-mark .mark text { fill: var(--paper); font-family: var(--font-sans); font-weight: 700; letter-spacing: 0.04em; }
-.footer-mark .stitch-divider { margin-top: var(--s-3); }
+/* Plain wordmark in the footer (README: plain for footers). Clear space 0.5 x cap height:
+   cap is 200/2114 of the width, so keep >= 4.8% of the width free around it (cqi = footer-mark width). */
+.footer-mark { margin-top: var(--s-9); container-type: inline-size; }
+.footer-mark .mark { width: 100%; height: auto; }
+.footer-mark .stitch-divider { margin-top: 5cqi; color: var(--bronze-dark); }
 .footer-base { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--s-3); margin-top: var(--s-6); font-size: 0.8125rem; color: #b5b0a7; }
 .footer-base .label { color: #b5b0a7; }
 @media (min-width: 52rem) {

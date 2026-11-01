@@ -80,7 +80,7 @@ faq_html = "\n".join(
 
 ld = [
   {"@context":"https://schema.org","@type":"Organization","name":"Strumpverket","url":"https://strumpverket.se/",
-   "logo":"https://strumpverket.se/assets/favicon.svg","description":"Exempelsajt för en butik som endast säljer svarta strumpor i bambuviskos."},
+   "logo":"https://strumpverket.se/android-chrome-512.png","description":"Exempelsajt för en butik som endast säljer svarta strumpor i bambuviskos."},
   {"@context":"https://schema.org","@type":"ItemList","name":"Strumpor (exempel)","itemListElement":[
     {"@type":"ListItem","position":i+1,"item":{"@type":"Product","name":f'{p["name"]} svart strumpa',
      "description":p["desc"]+" Exempelprodukt.","image":f'https://strumpverket.se/assets/img/{p["img"]}-768.jpg',
@@ -90,8 +90,6 @@ ld = [
 ]
 ld_html = "\n".join(f'<script type="application/ld+json">{json.dumps(x, ensure_ascii=False)}</script>' for x in ld)
 
-word = "STRUMPVERKET"
-letters = "".join(f'<span style="--i:{i}" aria-hidden="true">{c}</span>' for i, c in enumerate(word))
 
 css = (ROOT / "assets" / "css" / "main.css").read_text()
 css = re.sub(r"/\*.*?\*/", "", css, flags=re.S)
@@ -100,7 +98,7 @@ css = re.sub(r"\s*([{};,>])\s*", r"\1", css).replace(";}", "}").replace("../font
 tpl = (ROOT / "tools" / "index.template.html").read_text()
 out = (tpl.replace("{{SOCIALS}}", socials).replace("{{CARDS}}", "".join(cards))
           .replace("{{BOX_PIC}}", box_pic).replace("{{MAT_PIC}}", mat_pic).replace("{{FAQ}}", faq_html)
-          .replace("{{LD}}", ld_html).replace("{{LETTERS}}", letters)
+          .replace("{{LD}}", ld_html)
           .replace("{{SIZES_BOX}}", size_fieldset("lada")).replace("{{ADD_BOX}}", add_button("Lägg Strumplådan i varukorg"))
           .replace("{{ARROW}}", ARROW).replace("{{CSS}}", css))
 assert "{{" not in out, re.findall(r"\{\{\w+\}\}", out)
