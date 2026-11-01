@@ -36,8 +36,9 @@ def picture(img, alt, sizes, widths, w, h, lazy=True, cls=""):
 ARROW = '<svg class="btn__arrow" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M3 10h13M11 5l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>'
 CHECK = '<svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true" focusable="false"><path d="M4 10.5l4 4 8-9" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>'
 
-def add_button(label="Lägg i varukorg"):
-    return (f'<button class="btn add-btn" type="submit"><span class="add-btn__label">{label}</span>'
+def add_button(label="Lägg i varukorg", desc=""):
+    d = f' aria-describedby="{desc}"' if desc else ""
+    return (f'<button class="btn add-btn" type="submit"{d}><span class="add-btn__label">{label}</span>'
             f'<span class="add-btn__done" aria-hidden="true">{CHECK} Tillagd</span></button>')
 
 def size_fieldset(pid, default="41-45"):
@@ -58,7 +59,7 @@ for i, p in enumerate(PRODUCTS):
     <div class="product__meta"><p class="label">{p["meta"]} · Bambuviskos</p><p class="label">Exempelpris</p></div>
     <p class="product__desc">{p["desc"]}</p>
     {size_fieldset(p["id"])}
-    {add_button()}
+    {add_button(desc="p-" + p["id"])}
   </div>
 </form>
 </li>''')
