@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{TITLE}}</title>
+<meta name="description" content="{{DESCRIPTION}}">
+<meta name="robots" content="noindex, nofollow">
+<link rel="canonical" href="{{CANONICAL}}">
+<!-- STRUMPVERKET favicons (brand/final/favicon/head-snippet.html), relative paths so they resolve under /strumpverket/ on GitHub Pages and at the root of a future domain -->
+<link rel="icon" href="{{ROOT}}favicon.ico" sizes="48x48">
+<link rel="icon" href="{{ROOT}}favicon.svg" type="image/svg+xml">
+<link rel="icon" href="{{ROOT}}favicon-32.png" type="image/png" sizes="32x32">
+<link rel="icon" href="{{ROOT}}favicon-16.png" type="image/png" sizes="16x16">
+<link rel="apple-touch-icon" href="{{ROOT}}apple-touch-icon.png" sizes="180x180">
+<link rel="manifest" href="{{ROOT}}site.webmanifest">
+<meta name="theme-color" content="#111111">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="sv_SE">
+<meta property="og:site_name" content="Strumpverket">
+<meta property="og:title" content="{{OG_TITLE}}">
+<meta property="og:description" content="{{DESCRIPTION}}">
+<meta property="og:url" content="{{CANONICAL}}">
+<meta property="og:image" content="{{OG_IMAGE}}">
+<meta property="og:image:width" content="{{OG_W}}">
+<meta property="og:image:height" content="{{OG_H}}">
+<meta property="og:image:alt" content="{{OG_ALT}}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{OG_TITLE}}">
+<meta name="twitter:description" content="{{DESCRIPTION}}">
+<meta name="twitter:image" content="{{OG_IMAGE}}">
+<meta name="twitter:image:alt" content="{{OG_ALT}}">
+<link rel="preload" href="{{ROOT}}assets/fonts/schibsted-grotesk-var.woff2" as="font" type="font/woff2" crossorigin>
+{{EXTRA_HEAD}}
+<style>{{CSS}}</style>
+<script>document.documentElement.classList.add("js");document.documentElement.dataset.root="{{ROOT}}";</script>
+{{LD}}
+</head>
+<body>
+<a class="skip-link" href="#innehall">Hoppa till innehållet</a>
+<p class="demo-bar">Exempelsajt · Exempelpriser</p>
+
+<header class="site-header">
+  <div class="wrap">
+    <div class="header-left">
+      <nav class="nav" aria-label="Huvudmeny">
+        <ul>
+          <li><a class="u-link hit" href="{{ROOT}}#strumpor">Strumpor</a></li>
+          <li><a class="u-link hit" href="{{ROOT}}#om">Om</a></li>
+          <li><a class="u-link hit" href="{{ROOT}}#strumpladan">Strumplådan</a></li>
+          <li><a class="u-link hit" href="{{ROOT}}#fragor">Frågor</a></li>
+        </ul>
+      </nav>
+      <button class="icon-btn menu-toggle" type="button" aria-expanded="false" aria-controls="mobilmeny" aria-label="Öppna meny">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 8h18M3 16h18" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+      </button>
+    </div>
+    <a class="wordmark" href="{{ROOT}}#top" aria-label="Strumpverket, till startsidan">
+      <img class="wordmark__plate" src="{{ROOT}}assets/brand/strumpverket-wordmark-black.svg" width="2362" height="680" alt="" decoding="async">
+      <img class="wordmark__plain" src="{{ROOT}}assets/brand/strumpverket-wordmark-plain-black.svg" width="2114" height="207" alt="" decoding="async">
+    </a>
+    <div class="header-right">
+      <button class="icon-btn" type="button" data-open-cart aria-haspopup="dialog" aria-controls="varukorg" aria-label="Varukorg, 0 varor">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 8h14l-1.2 12H6.2L5 8Z M9 8V6.5a3 3 0 0 1 6 0V8" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+        <span class="cart-count" data-count="0" aria-hidden="true">0</span>
+      </button>
+    </div>
+  </div>
+  <nav class="mobile-nav" id="mobilmeny" aria-label="Mobilmeny">
+    <ul class="wrap">
+      <li><a href="{{ROOT}}#strumpor">Strumpor</a></li>
+      <li><a href="{{ROOT}}#om">Om</a></li>
+      <li><a href="{{ROOT}}#strumpladan">Strumplådan</a></li>
+      <li><a href="{{ROOT}}#fragor">Frågor</a></li>
+      <li><a href="{{ROOT}}storleksguide/">Storleksguide</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main id="innehall">
+{{MAIN}}
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-cols">
+      <div>
+        <h2>Handla</h2>
+        <ul>
+          <li><a class="u-link hit" href="{{ROOT}}#strumpor">Strumpor</a></li>
+          <li><a class="u-link hit" href="{{ROOT}}#strumpladan">Strumplådan</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Info</h2>
+        <ul>
+          <li><a class="u-link hit" href="{{ROOT}}#om">Om</a></li>
+          <li><a class="u-link hit" href="{{ROOT}}#fragor">Frågor</a></li>
+          <li><a class="u-link hit" href="{{ROOT}}storleksguide/">Storleksguide</a></li>
+        </ul>
+      </div>
+      <div class="socials-col">
+        <h2>Följ oss (kommer snart)</h2>
+        <ul class="socials">
+          {{SOCIALS}}
+        </ul>
+      </div>
+    </div>
+    <div class="footer-mark" aria-hidden="true">
+      <img class="mark" src="{{ROOT}}assets/brand/strumpverket-wordmark-plain-white.svg" width="2114" height="207" alt="" loading="lazy" decoding="async">
+      <svg class="stitch-divider" viewBox="0 0 1000 6" preserveAspectRatio="none" focusable="false"><line x1="0" y1="3" x2="1000" y2="3"/></svg>
+    </div>
+    <div class="footer-base">
+      <p>© <span data-year>2026</span> Strumpverket</p>
+      <p class="label">Exempelsajt · Produkter, priser och bilder är exempel</p>
+    </div>
+  </div>
+</footer>
+
+<dialog class="cart" id="varukorg" aria-labelledby="cart-title" closedby="any">
+  <div class="cart__inner">
+    <div class="cart__head">
+      <h2 id="cart-title">Varukorg</h2>
+      <button class="icon-btn" type="button" aria-label="Stäng varukorgen">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+      </button>
+    </div>
+    <div class="cart__items"></div>
+    <div class="cart__foot">
+      <div class="cart__sum"><span>Summa</span><span data-sum>0 kr</span></div>
+      <p class="label">Exempelpriser inkl. moms. Inga köp genomförs.</p>
+      <p class="cart__notice" tabindex="-1" role="status" hidden><strong>Kassan öppnar snart.</strong> Det här är en exempelsajt, så inga köp genomförs och inga uppgifter sparas.</p>
+      <button class="btn btn--block" type="button" data-checkout>Till kassan {{ARROW}}</button>
+    </div>
+  </div>
+</dialog>
+
+<div class="toast" aria-hidden="true"></div>
+<p id="live" class="visually-hidden" aria-live="polite"></p>
+<script src="{{ROOT}}assets/js/main.js" defer></script>
+</body>
+</html>

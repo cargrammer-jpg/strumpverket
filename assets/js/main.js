@@ -1,6 +1,7 @@
 (() => {
   "use strict";
   const doc = document.documentElement;
+  const root = doc.dataset.root || "";
   const reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
   const finePointer = window.matchMedia("(pointer: fine)");
   const fmt = new Intl.NumberFormat("sv-SE");
@@ -25,10 +26,22 @@
     if (e.target.closest("a")) { mobileNav.classList.remove("is-open"); menuBtn.setAttribute("aria-expanded", "false"); menuBtn.setAttribute("aria-label", "Öppna meny"); }
   });
 
-  /* ---------- Hero video ---------- */
+  /* ---------- Hero video ----------
+     The still is the <picture> behind the video. No poster attribute, so the
+     browser does not fetch hero-1280.jpg on top of the AVIF. Sources stay off
+     the element until playback starts: saveData, slow-2g/2g/3g and reduced
+     motion therefore never download the file. A tap on the button still loads
+     it, because the pause/play control has to work. */
   const video = document.querySelector(".hero__frame video");
   const toggle = document.querySelector(".media-toggle");
   if (video && toggle) {
+    const conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+    const slowNet = () => {
+      if (!conn) return false;
+      if (conn.saveData) return true;
+      const kind = conn.effectiveType;
+      return kind === "slow-2g" || kind === "2g" || kind === "3g";
+    };
     const label = toggle.querySelector("[data-label]");
     const iconPause = toggle.querySelector("[data-icon=pause]");
     const iconPlay = toggle.querySelector("[data-icon=play]");
@@ -38,28 +51,52 @@
       iconPause.toggleAttribute("hidden", !playing);
       iconPlay.toggleAttribute("hidden", playing);
     };
+    const attachSources = () => {
+      if (video.dataset.armed === "1") return;
+      video.dataset.armed = "1";
+      [["video/webm", video.dataset.srcWebm], ["video/mp4", video.dataset.srcMp4]].forEach(([type, url]) => {
+        if (!url) return;
+        const source = document.createElement("source");
+        source.type = type;
+        source.src = url;
+        video.append(source);
+      });
+      video.preload = "auto";
+      video.load();
+    };
     const play = () => {
-      if (video.preload === "none") video.preload = "auto";
-      const p = video.play();
-      if (p) p.then(() => { video.classList.add("is-playing"); setUi(true); }).catch(() => setUi(false));
+      attachSources();
+      const pending = video.play();
+      if (pending) pending.then(() => { video.classList.add("is-playing"); setUi(true); }).catch(() => setUi(false));
     };
     const pause = () => { video.pause(); setUi(false); };
     toggle.hidden = false;
-    toggle.addEventListener("click", () => (video.paused ? play() : pause()));
-    const start = () => { if (!reduce.matches) play(); else setUi(false); };
+    setUi(false);
+    toggle.addEventListener("click", () => {
+      if (video.paused) { video.dataset.userStarted = "1"; video.dataset.userPaused = "0"; play(); }
+      else { video.dataset.userPaused = "1"; pause(); }
+    });
+    const start = () => { if (!reduce.matches && !slowNet()) play(); };
     if (document.readyState === "complete") start(); else window.addEventListener("load", start, { once: true });
-    reduce.addEventListener("change", (e) => (e.matches ? pause() : play()));
-    // Save resources when the hero is off screen
+    reduce.addEventListener("change", (e) => {
+      if (e.matches) pause();
+      else if (!slowNet() && video.dataset.userPaused !== "1") play();
+    });
+    if (conn && conn.addEventListener) {
+      conn.addEventListener("change", () => {
+        if (slowNet() && video.dataset.userStarted !== "1") pause();
+      });
+    }
     new IntersectionObserver(([entry]) => {
-      if (reduce.matches || !video.classList.contains("is-playing")) return;
-      if (entry.isIntersecting && video.dataset.userPaused !== "1") video.play().catch(() => {});
-      else if (!entry.isIntersecting) video.pause();
+      if (video.dataset.armed !== "1" || video.dataset.userPaused === "1") return;
+      if (reduce.matches && video.dataset.userStarted !== "1") return;
+      if (entry.isIntersecting) video.play().catch(() => {});
+      else video.pause();
     }).observe(video);
-    toggle.addEventListener("click", () => { video.dataset.userPaused = video.paused ? "1" : "0"; });
   }
 
   /* ---------- Scroll reveals ---------- */
-  const revealables = document.querySelectorAll("[data-reveal], .stitch-divider");
+  const revealables = document.querySelectorAll("[data-reveal], [data-mark], .stitch-divider");
   if ("IntersectionObserver" in window && !reduce.matches) {
     const io = new IntersectionObserver((entries) => {
       entries.forEach((en) => { if (en.isIntersecting) { en.target.classList.add("is-in"); io.unobserve(en.target); } });
@@ -116,8 +153,9 @@
     cart.forEach((item, idx) => {
       const row = document.createElement("div");
       row.className = "cart-item";
+      const imgSrc = item.img.startsWith("assets/") ? root + item.img : item.img;
       row.innerHTML = `
-        <img src="${item.img}" alt="" width="72" height="96" loading="lazy" decoding="async">
+        <img src="${imgSrc}" alt="" width="72" height="96" loading="lazy" decoding="async">
         <div>
           <p class="cart-item__name"></p>
           <p class="label">Storlek ${item.size}</p>
@@ -126,7 +164,7 @@
             <output aria-live="polite">${item.qty}</output>
             <button type="button" data-act="inc" aria-label="Öka antal">+</button>
           </div>
-          <div><button type="button" class="remove u-link" data-act="rm">Ta bort</button></div>
+          <div><button type="button" class="remove u-link hit" data-act="rm">Ta bort</button></div>
         </div>
         <p class="cart-item__price">${kr(item.price * item.qty)}</p>`;
       row.querySelector(".cart-item__name").textContent = item.name;
