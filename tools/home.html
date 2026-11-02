@@ -1,0 +1,152 @@
+  <section class="hero" id="top" aria-labelledby="hero-title">
+    <div class="wrap">
+      <div class="hero__top">
+        <h1 id="hero-title"><span class="line"><span>Svarta strumpor.</span></span><span class="line"><span>Inget annat.</span></span></h1>
+        <div class="hero__aside">
+          <p class="label">Bambuviskos · Endast svart · 3 storlekar</p>
+          <p class="hero__lede">Vi gör en enda sak. Svarta strumpor i bambuviskos, mjuka mot huden och lätta att matcha med allt. Ett par du slutar tänka på.</p>
+          <div class="hero__cta">
+            <a class="btn" href="#strumpor" data-magnetic>Se strumporna {{ARROW}}</a>
+            <a class="u-link hit" href="#strumpladan">Om Strumplådan</a>
+          </div>
+        </div>
+      </div>
+      <figure class="hero__media">
+        <div class="hero__frame">
+          <picture>
+            <source type="image/avif" srcset="{{ROOT}}assets/img/hero-640.avif 640w, {{ROOT}}assets/img/hero-1280.avif 1280w" sizes="(min-width: 90rem) 84rem, 94vw">
+            <source type="image/webp" srcset="{{ROOT}}assets/img/hero-640.webp 640w, {{ROOT}}assets/img/hero-1280.webp 1280w" sizes="(min-width: 90rem) 84rem, 94vw">
+            <img src="{{ROOT}}assets/img/hero-1280.jpg" srcset="{{ROOT}}assets/img/hero-640.jpg 640w, {{ROOT}}assets/img/hero-1280.jpg 1280w" sizes="(min-width: 90rem) 84rem, 94vw" alt="Ett vikt par svarta strumpor på ljust linne i mjukt dagsljus" width="1280" height="720" fetchpriority="high" decoding="async">
+          </picture>
+          <video muted playsinline loop preload="none" width="1280" height="720" aria-hidden="true" tabindex="-1" data-src-webm="{{ROOT}}assets/video/hero.webm" data-src-mp4="{{ROOT}}assets/video/hero.mp4"></video>
+          <button class="media-toggle" type="button" aria-label="Spela filmen" hidden>
+            <svg data-icon="pause" viewBox="0 0 12 12" aria-hidden="true" hidden><path d="M3 1.5v9M9 1.5v9" stroke="currentColor" stroke-width="1.8"/></svg>
+            <svg data-icon="play" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 1.5l7 4.5-7 4.5z" fill="currentColor"/></svg>
+            <span data-label>Spela</span>
+          </button>
+        </div>
+        <figcaption class="hero__caption"><span class="label">Fig. 01 · Vardag, vikt på linne</span><span class="label">Loop · 7 s</span></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="trust" aria-label="Exempel på köpvillkor">
+    <div class="wrap">
+      <ul class="trust__list">
+        <li><p class="label">Frakt · exempel</p><p class="trust__value">Fri frakt från 499 kr</p></li>
+        <li><p class="label">Leverans · exempel</p><p class="trust__value">2-4 vardagar</p></li>
+        <li><p class="label">Retur · exempel</p><p class="trust__value">30 dagars öppet köp</p></li>
+        <li><p class="label">Avsändare · exempel</p><p class="trust__value">Skickas från Sverige</p></li>
+        <li><p class="label">Betalning · exempel</p><p class="trust__value">Klarna, Swish och kort</p></li>
+      </ul>
+      <p class="trust__note label">Exempelvillkor. Inget av detta är bestämt ännu.</p>
+    </div>
+  </section>
+
+  <section class="section" id="strumpor" aria-labelledby="strumpor-title">
+    <div class="wrap">
+      <div class="section-head" data-reveal>
+        <div>
+          <p class="label">Sortiment</p>
+          <h2 id="strumpor-title">Fyra modeller. En färg.</h2>
+        </div>
+        <p>Samma svarta stickning i tre längder, plus ett fyrpack för den som vill slippa välja.</p>
+      </div>
+      <p class="callout">Exempelpris. Alla priser på sidan är en förhandsvisning och kan ändras innan öppning.</p>
+      <ul class="products">
+        {{CARDS}}
+      </ul>
+    </div>
+  </section>
+
+  <section class="moment" aria-labelledby="moment-title">
+    <div class="wrap moment__inner">
+      <h2 id="moment-title" class="visually-hidden">Strumpverket</h2>
+      <span class="moment__reveal" data-mark><img class="moment__mark" src="{{ROOT}}assets/brand/strumpverket-wordmark-plain-white.svg" width="2114" height="207" alt="" decoding="async"></span>
+      <p class="moment__line" data-reveal>En färg. Den räcker till allt.</p>
+      <svg class="stitch-divider" viewBox="0 0 1000 6" preserveAspectRatio="none" aria-hidden="true" focusable="false"><line x1="0" y1="3" x2="1000" y2="3"/></svg>
+    </div>
+  </section>
+
+  <section class="section" id="om" aria-labelledby="om-title">
+    <div class="wrap why">
+      <div data-reveal>
+        <p class="label">Om Strumpverket</p>
+        <h2 id="om-title" class="why__statement">Varför bara svart? För att det alltid fungerar.</h2>
+      </div>
+      <div class="why__grid">
+        <div class="why__media" data-reveal>
+          <figure>
+            <div class="frame">{{MAT_PIC}}</div>
+            <figcaption class="label">Fig. 02 · Stickning i närbild</figcaption>
+          </figure>
+        </div>
+        <div>
+          <ol class="points">
+            <li data-reveal><span class="label">01</span><div><h3>En färg, inga udda par</h3><p>Svart passar till kostym, jeans och träningsskor. När varje par är likadant behöver du aldrig sortera strumpor igen. Tappar du en, tar du nästa.</p></div></li>
+            <li data-reveal><span class="label">02</span><div><h3>Bambuviskos</h3><p>En fiber som framställs av cellulosa från bambu. Den känns mjuk och slät mot huden och upplevs som sval och luftig att bära.</p></div></li>
+            <li data-reveal><span class="label">03</span><div><h3>Stretch som håller formen</h3><p>En inblandning av polyamid och elastan ger strumpan stretch, gör den slitstarkare och hjälper den att sitta kvar där den ska.</p></div></li>
+            <li data-reveal><span class="label">04</span><div><h3>Färre, bättre par</h3><p>Hellre en låda med likadana strumpor du gillar än en hög du aldrig använder. Ett litet sortiment gör det lätt att välja.</p></div></li>
+          </ol>
+          <p class="why__note">Exempel på materialsammansättning: 80 % bambuviskos, 17 % polyamid, 3 % elastan. Slutlig sammansättning anges när sortimentet är klart.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section box" id="strumpladan" aria-labelledby="box-title">
+    <div class="wrap box__grid">
+      <div class="box__media" data-reveal>{{BOX_PIC}}</div>
+      <form class="box__body" data-product="strumpladan" data-name="Strumplådan" data-price="549" data-img="assets/img/lada-400.webp" data-reveal aria-labelledby="box-title">
+        <p class="label">Prenumeration · Planerad tjänst</p>
+        <h2 id="box-title">Strumplådan</h2>
+        <p>Fem par Vardag hem till dig med jämna mellanrum, så att slitna par är ersatta i tid.</p>
+        <ul class="box__list">
+          <li>5 par Vardag i din storlek per leverans</li>
+          <li>Du väljer intervall: var 2:a, 3:e eller 6:e månad</li>
+          <li>Tanken är att du ska kunna pausa eller avsluta när du vill</li>
+        </ul>
+        <fieldset class="sizes"><legend class="label">Intervall</legend><div class="sizes__opts">
+          <label class="chip"><input type="radio" name="intervall" value="var 2:a månad"><span>2 mån</span></label>
+          <label class="chip"><input type="radio" name="intervall" value="var 3:e månad" checked><span>3 mån</span></label>
+          <label class="chip"><input type="radio" name="intervall" value="var 6:e månad"><span>6 mån</span></label>
+        </div></fieldset>
+        {{SIZES_BOX}}
+        {{BOX_PRICE}}
+        {{ADD_BOX}}
+      </form>
+    </div>
+  </section>
+
+  <section class="section" id="fragor" aria-labelledby="faq-title">
+    <div class="wrap">
+      <div class="section-head" data-reveal>
+        <div>
+          <p class="label">Frågor och svar</p>
+          <h2 id="faq-title">Bra att veta</h2>
+        </div>
+        <p>Hittar du inte svaret här? När butiken öppnar kommer det finnas en kontaktadress.</p>
+      </div>
+      <div class="faq" data-reveal>
+        {{FAQ}}
+      </div>
+    </div>
+  </section>
+
+  <section class="section news" aria-labelledby="news-title">
+    <div class="wrap news__grid">
+      <div data-reveal>
+        <p class="label">Nyhetsbrev</p>
+        <h2 id="news-title">Först att veta när vi öppnar.</h2>
+      </div>
+      <form class="news__form" novalidate data-reveal>
+        <label for="epost" class="label">E-postadress</label>
+        <div class="news__field">
+          <input id="epost" name="epost" type="email" autocomplete="email" inputmode="email" placeholder="namn@exempel.se" required>
+          <button class="btn" type="submit" data-magnetic>Skriv upp mig {{ARROW}}</button>
+        </div>
+        <p class="news__note">Demo: formuläret skickar eller sparar ingen data.</p>
+        <p class="news__status" role="status"></p>
+      </form>
+    </div>
+  </section>
