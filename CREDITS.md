@@ -28,5 +28,15 @@ Identitet STRUMPVERKET (riktning E, "Maker's plate") av Mark, källfiler och reg
 Båda är självhostade som woff2, subsettade till latin (inkl. å, ä, ö).
 
 ## Ikoner
-Sociala ikoner (Instagram, X, TikTok, YouTube, Facebook, Pinterest) från Simple Icons, CC0 1.0. https://simpleicons.org/
-Varumärkena tillhör respektive ägare. Länkarna är platshållare (href="#"), inga konton finns ännu.
+Sociala ikoner (Instagram, X, TikTok) från Simple Icons, CC0 1.0. https://simpleicons.org/
+De länkar till @strumpverket. YouTube, Facebook och Pinterest visas inte.
+
+## Betalmärken
+Varumärkena tillhör respektive ägare. Märkena visas som exempel på planerade betalsätt. Butiken tar inte betalt ännu. Filerna är oförändrade utom att Mastercard-filen har fått `viewBox` så den skalar jämnt. Proportioner och färger är inte ändrade.
+
+- Visa: ordmärket från 2021, Visa Blue `#1434CB`. Källa: den publicerade vektorfilen för Visa Inc. logo (2021-present). Riktlinjer: märket ska vara blått på ljust underlag, utan omfärgning, skugga eller tänjning. https://corporate.visa.com/en/about-visa.html
+- Mastercard: symbolen i fullfärg, `#EB001B`, `#F79E1B` och överlapp `#FF5F00`. Källa: Mastercard Symbol-geometrin. Riktlinjer: symbolen signalerar acceptans och ska vara i fullfärg, inte i gråskala. https://www.mastercard.com/brandcenter/us/en/home.html
+- Apple Pay: svart låsning med äpplet och ordet Pay som konturer. Källa: det publicerade Apple Pay-märket. Riktlinjer: använd märket som det är, sätt inte ordet Pay i ett annat typsnitt. https://developer.apple.com/apple-pay/marketing/
+- Google Pay: det officiella acceptansmärket (vit pillerform, text `#3C4043`, G i `#4285F4`, `#34A853`, `#FABB05`, `#E94235`). Källa: märket i Googles riktlinjer, via den fil som anger den sidan som källa. Riktlinjer: ändra inte märket och gör det inte mindre än de andra. https://developers.google.com/pay/api/web/guides/brand-guidelines
+- Klarna: det rosa betalningsmärket `#FFA8CD` med ordmärke `#0B051D`. Källa: Klarna Payment Badge. Riktlinjer: behåll den rosa färgen och ordmärkets form.
+- Swish: den liggande logotypen som Swish själva serverar, https://www.swish.com/assets/swish-logotype-C2_aqj3N.svg. Riktlinjer: https://www.swish.com/marknadsmaterial/logotyp. Redigera inte filen. Mot mörk bakgrund ska den ligga på en vit platta, vilket den gör. Swish föredrar den stående varianten när det finns plats. I den här raden är höjden densamma som de andra märkena, så den liggande filen används oförändrad.

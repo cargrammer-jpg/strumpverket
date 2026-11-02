@@ -535,6 +535,30 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 }
 .socials svg { width: 18px; height: 18px; fill: currentColor; }
 .socials-col { grid-column: 1 / -1; }
+.pay-block { margin-top: var(--s-8); }
+.pay-block h2 {
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #a9a49b;
+  margin: 0 0 var(--s-3);
+}
+.pay-row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.pay-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  height: 32px;
+  padding: 4px 10px;
+  background: #fff;
+  border-radius: 6px;
+}
+.pay-badge img { display: block; height: 24px; width: auto; max-width: none; }
+.pay-badge--mark { padding: 0; background: transparent; }
+.pay-badge--mark img { height: 32px; }
 /* Plain wordmark in the footer (README: plain for footers). Clear space 0.5 x cap height:
    cap is 200/2114 of the width, so keep >= 4.8% of the width free around it (cqi = footer-mark width). */
 .footer-mark { margin-top: var(--s-9); container-type: inline-size; }
