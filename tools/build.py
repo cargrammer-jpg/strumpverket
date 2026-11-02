@@ -38,10 +38,15 @@ def icon_path(name):
     svg = (ROOT / "tools" / "icons" / f"si-{name}.svg").read_text()
     return re.search(r' d="([^"]+)"', svg).group(1)
 
-SOCIAL = [("instagram","Instagram"),("x","X"),("tiktok","TikTok"),("youtube","YouTube"),("facebook","Facebook"),("pinterest","Pinterest")]
+SOCIAL = [
+    ("instagram", "Instagram", "https://www.instagram.com/strumpverket/"),
+    ("x", "X", "https://x.com/strumpverket"),
+    ("tiktok", "TikTok", "https://www.tiktok.com/@strumpverket"),
+]
 socials = "\n".join(
-    f'<li><a href="#" aria-label="Strumpverket på {label} (kommer snart)"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="{icon_path(n)}"/></svg></a></li>'
-    for n, label in SOCIAL)
+    f'<li><a href="{url}" target="_blank" rel="noopener noreferrer" aria-label="STRUMPVERKET på {label}"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="{icon_path(n)}"/></svg></a></li>'
+    for n, label, url in SOCIAL)
+SAME_AS = [url for _, _, url in SOCIAL]
 
 PRODUCTS = [
     dict(id="ankel", slug="ankel", nr="01", name="Ankel", price=129, img="ankel",
@@ -249,6 +254,7 @@ def ld_scripts(blocks):
 home_ld = ld_scripts([
     {"@context": "https://schema.org", "@type": "Organization", "name": "Strumpverket",
      "url": abs_page("/"), "logo": f"{ASSET_ORIGIN}/android-chrome-512.png",
+     "sameAs": SAME_AS,
      "description": "Exempelsajt för en butik som endast säljer svarta strumpor i bambuviskos."},
     {"@context": "https://schema.org", "@type": "ItemList", "name": "Strumpor (exempel)",
      "itemListElement": [product_ld_item(p, i + 1) for i, p in enumerate(PRODUCTS)]},
