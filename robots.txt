@@ -1,4 +1,4 @@
-# Exempelsajt. Sidorna har dessutom meta robots noindex.
+# Förhandsvisning. Sidorna har dessutom meta robots noindex.
 User-agent: *
 Allow: /
 Sitemap: https://strumpverket.se/sitemap.xml

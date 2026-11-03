@@ -38,7 +38,7 @@
 </head>
 <body>
 <a class="skip-link" href="#innehall">Hoppa till innehållet</a>
-<p class="demo-bar">Exempelsajt · Exempelpriser</p>
+<p class="demo-bar">Förhandsvisning · Kassan öppnar snart</p>
 
 <header class="site-header">
   <div class="wrap">
@@ -47,7 +47,7 @@
         <ul>
           <li><a class="u-link hit" href="{{ROOT}}#strumpor">Strumpor</a></li>
           <li><a class="u-link hit" href="{{ROOT}}#om">Om</a></li>
-          <li><a class="u-link hit" href="{{ROOT}}#strumpladan">Strumplådan</a></li>
+          <li><a class="u-link hit" href="{{ROOT}}#prenumeration">Prenumeration</a></li>
           <li><a class="u-link hit" href="{{ROOT}}#fragor">Frågor</a></li>
         </ul>
       </nav>
@@ -70,7 +70,7 @@
     <ul class="wrap">
       <li><a href="{{ROOT}}#strumpor">Strumpor</a></li>
       <li><a href="{{ROOT}}#om">Om</a></li>
-      <li><a href="{{ROOT}}#strumpladan">Strumplådan</a></li>
+      <li><a href="{{ROOT}}#prenumeration">Prenumeration</a></li>
       <li><a href="{{ROOT}}#fragor">Frågor</a></li>
       <li><a href="{{ROOT}}storleksguide/">Storleksguide</a></li>
     </ul>
@@ -88,7 +88,7 @@
         <h2>Handla</h2>
         <ul>
           <li><a class="u-link hit" href="{{ROOT}}#strumpor">Strumpor</a></li>
-          <li><a class="u-link hit" href="{{ROOT}}#strumpladan">Strumplådan</a></li>
+          <li><a class="u-link hit" href="{{ROOT}}#prenumeration">Prenumeration</a></li>
         </ul>
       </div>
       <div>
@@ -123,12 +123,12 @@
     </div>
     <div class="footer-base">
       <p>© <span data-year>2026</span> Strumpverket</p>
-      <p class="label">Exempelsajt · Produkter, priser och bilder är exempel</p>
+      <p class="label">Förhandsvisning · Bilderna är exempel</p>
     </div>
   </div>
 </footer>
 
-<dialog class="cart" id="varukorg" aria-labelledby="cart-title" closedby="any">
+<dialog class="cart" id="varukorg" data-shipping="{{SHIPPING}}" aria-labelledby="cart-title" closedby="any">
   <div class="cart__inner">
     <div class="cart__head">
       <h2 id="cart-title">Varukorg</h2>
@@ -138,9 +138,13 @@
     </div>
     <div class="cart__items"></div>
     <div class="cart__foot">
+      <dl class="cart__lines">
+        <div><dt>Varor</dt><dd data-subtotal>0 kr</dd></div>
+        <div><dt>Frakt, PostNord till brevlådan</dt><dd data-ship-total>0 kr</dd></div>
+      </dl>
       <div class="cart__sum"><span>Summa</span><span data-sum>0 kr</span></div>
-      <p class="label">Exempelpriser inkl. moms. Inga köp genomförs.</p>
-      <p class="cart__notice" tabindex="-1" role="status" hidden><strong>Kassan öppnar snart.</strong> Det här är en exempelsajt, så inga köp genomförs och inga uppgifter sparas.</p>
+      <p class="label">Priser inkl. moms. Frakt {{SHIPPING}} kr per beställning, ingår i prenumerationer.</p>
+      <p class="cart__notice" tabindex="-1" role="status" hidden><strong>Kassan öppnar snart.</strong> Inga köp genomförs och ingen prenumeration startas ännu. Varukorgen sparas bara i din webbläsare och inga uppgifter skickas.</p>
       <button class="btn btn--block" type="button" data-checkout>Till kassan {{ARROW}}</button>
     </div>
   </div>

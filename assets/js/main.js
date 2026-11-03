@@ -120,8 +120,10 @@
     });
   }
 
-  /* ---------- Cart (localStorage, demo only) ---------- */
-  const KEY = "strumpverket-cart-v1";
+  /* ---------- Cart (localStorage only, checkout not open yet) ----------
+     Nothing is sent anywhere. v2: the range is now 5-pack, 10-pack and two
+     subscriptions, so carts from the old four-model range are not reused. */
+  const KEY = "strumpverket-cart-v2";
   const load = () => { try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch { return []; } };
   let cart = load();
   const save = () => { try { localStorage.setItem(KEY, JSON.stringify(cart)); } catch { /* storage blocked, keep in memory */ } };
@@ -129,6 +131,9 @@
   const dialog = document.getElementById("varukorg");
   const itemsEl = dialog.querySelector(".cart__items");
   const sumEl = dialog.querySelector("[data-sum]");
+  const subEl = dialog.querySelector("[data-subtotal]");
+  const shipEl = dialog.querySelector("[data-ship-total]");
+  const SHIPPING = Number(dialog.dataset.shipping || 0);
   const notice = dialog.querySelector(".cart__notice");
   const checkout = dialog.querySelector("[data-checkout]");
   const countEls = document.querySelectorAll(".cart-count");
@@ -137,16 +142,20 @@
   const live = document.getElementById("live");
 
   const totalQty = () => cart.reduce((n, i) => n + i.qty, 0);
-  const totalSum = () => cart.reduce((n, i) => n + i.qty * i.price, 0);
+  const subtotal = () => cart.reduce((n, i) => n + i.qty * i.price, 0);
+  /* One shipping fee per order when it holds a one-off pack. Subscriptions include shipping. */
+  const shipping = () => (cart.some((i) => i.ship) ? SHIPPING : 0);
 
   const render = () => {
     const q = totalQty();
     countEls.forEach((el) => { el.textContent = q; el.dataset.count = q; });
     cartBtn.setAttribute("aria-label", `Varukorg, ${q} ${q === 1 ? "vara" : "varor"}`);
-    sumEl.textContent = kr(totalSum());
+    if (subEl) subEl.textContent = kr(subtotal());
+    if (shipEl) shipEl.textContent = cart.some((i) => i.ship) ? kr(shipping()) : (cart.length ? "Ingår" : kr(0));
+    sumEl.textContent = kr(subtotal() + shipping());
     checkout.disabled = q === 0;
     if (!cart.length) {
-      itemsEl.innerHTML = '<p class="cart__empty">Varukorgen är tom. Välj en modell och en storlek för att börja.</p>';
+      itemsEl.innerHTML = '<p class="cart__empty">Varukorgen är tom. Välj 5-pack, 10-pack eller en prenumeration för att börja.</p>';
       return;
     }
     itemsEl.innerHTML = "";
@@ -158,7 +167,7 @@
         <img src="${imgSrc}" alt="" width="72" height="96" loading="lazy" decoding="async">
         <div>
           <p class="cart-item__name"></p>
-          <p class="label">Storlek ${item.size}</p>
+          <p class="label">Storlek ${item.size}${item.ship ? "" : " · Frakt ingår"}</p>
           <div class="qty" role="group" aria-label="Antal">
             <button type="button" data-act="dec" aria-label="Minska antal">&minus;</button>
             <output aria-live="polite">${item.qty}</output>
@@ -202,7 +211,7 @@
       const id = `${d.product}|${size}|${interval || ""}`;
       const existing = cart.find((i) => i.id === id);
       if (existing) existing.qty += 1;
-      else cart.push({ id, name, size, price: Number(d.price), img: d.img, qty: 1 });
+      else cart.push({ id, name, size, price: Number(d.price), img: d.img, ship: d.ship === "1", qty: 1 });
       save(); render(); bump();
       const btn = form.querySelector(".add-btn");
       btn.classList.add("is-added");
@@ -230,14 +239,14 @@
   window.addEventListener("storage", (e) => { if (e.key === KEY) { cart = load(); render(); } });
   render();
 
-  /* ---------- Newsletter (demo, sends nothing) ---------- */
+  /* ---------- Newsletter (not live yet, sends nothing) ---------- */
   const news = document.querySelector(".news__form");
   news?.addEventListener("submit", (e) => {
     e.preventDefault();
     const input = news.querySelector("input[type=email]");
     const status = news.querySelector(".news__status");
     if (!input.checkValidity()) { status.textContent = "Skriv en giltig e-postadress."; input.focus(); return; }
-    status.textContent = "Tack. Det här är en demo, så ingen adress har sparats eller skickats.";
+    status.textContent = "Tack. Nyhetsbrevet är inte igång än, så ingen adress har sparats eller skickats.";
     news.reset();
   });
 
