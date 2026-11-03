@@ -4,7 +4,7 @@ const require = createRequire('/tmp/svtools/');
 const { chromium } = require('playwright-core');
 const [,, base, out, prefix] = process.argv;
 const b = await chromium.launch({ executablePath: '/usr/bin/google-chrome' });
-for (const w of [1440, 390]) {
+for (const w of [1280, 390]) {
   const ctx = await b.newContext({ viewport: { width: w, height: w === 390 ? 844 : 900 }, deviceScaleFactor: w === 390 ? 2 : 1 });
   const p = await ctx.newPage();
   const errs = [];
@@ -25,7 +25,7 @@ for (const w of [1440, 390]) {
   console.log(w, 'height', h, 'video', JSON.stringify(vid), 'errors', JSON.stringify(errs));
   if (w === 390) {
     // cart flow test
-    await p.click('#strumpor form[data-product="vardag"] button[type=submit]');
+    await p.click('#strumpor form[data-product="5-pack"] button[type=submit]');
     await p.waitForTimeout(400);
     await p.click('[data-open-cart]'); await p.waitForTimeout(700);
     await p.click('[data-checkout]'); await p.waitForTimeout(300);
