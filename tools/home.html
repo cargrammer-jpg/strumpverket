@@ -1,16 +1,24 @@
   <section class="hero" id="top" aria-labelledby="hero-title">
     <div class="wrap">
       <div class="hero__top">
-        <h1 id="hero-title"><span class="line"><span>Svarta strumpor.</span></span><span class="line"><span>Inget annat.</span></span></h1>
+        <div class="hero__head">
+          <p class="label hero__eyebrow">Premium · Endast svart · Viskos från bambu</p>
+          <h1 id="hero-title"><span class="line"><span>Bambustrumpor</span></span><span class="line"><span>som håller.</span></span></h1>
+        </div>
         <div class="hero__aside">
-          <p class="label">Viskos från bambu · Endast svart · 5-pack och 10-pack</p>
-          <p class="hero__lede">Vi gör en enda sak. Svarta premiumstrumpor i viskos från bambu, mjuka mot huden och lätta att matcha med allt. Välj 5-pack eller 10-pack, eller låt nya par komma hem med jämna mellanrum.</p>
+          <p class="hero__lede">Vi gör en enda strumpa och lägger allt på kvaliteten. Mjuk viskos från bambu, polyamid för slitstyrka och lycra som håller formen.</p>
+          <p class="hero__promise"><strong>Vårt kvalitetslöfte:</strong> bästa möjliga kvalitet i varje par. Inget annat.</p>
           <div class="hero__cta">
             <a class="btn" href="#strumpor" data-magnetic>Se strumporna {{ARROW}}</a>
-            <a class="u-link hit" href="#prenumeration">Prenumeration</a>
+            <a class="u-link hit" href="#kvalitet">Därför håller de</a>
           </div>
         </div>
       </div>
+      <dl class="hero__spec" aria-label="Material">
+        <div><dt>Viskos från bambu</dt><dd>78&nbsp;%</dd></div>
+        <div><dt>Polyamid</dt><dd>18&nbsp;%</dd></div>
+        <div><dt>Lycra</dt><dd>4&nbsp;%</dd></div>
+      </dl>
       <figure class="hero__media">
         <div class="hero__frame">
           <picture>
@@ -58,6 +66,56 @@
     </div>
   </section>
 
+  <section class="section quality" id="kvalitet" aria-labelledby="kvalitet-title">
+    <div class="wrap">
+      <div class="section-head" data-reveal>
+        <div>
+          <p class="label">Kvalitet</p>
+          <h2 id="kvalitet-title">Därför håller de.</h2>
+        </div>
+        <p>Tre fibrer med var sin uppgift. Tillsammans blir det en strumpa som är mjuk mot huden, tål vardagen och behåller formen.</p>
+      </div>
+      <figure class="mix" data-reveal>
+        <div class="mix__bar" aria-hidden="true"><span class="mix__seg mix__seg--1" style="--w:78"></span><span class="mix__seg mix__seg--2" style="--w:18"></span><span class="mix__seg mix__seg--3" style="--w:4"></span></div>
+        <figcaption class="mix__legend">
+          <span class="label">Material</span>
+          <ul>
+            <li><span class="mix__swatch mix__swatch--1" aria-hidden="true"></span>78&nbsp;% viskos från bambu</li>
+            <li><span class="mix__swatch mix__swatch--2" aria-hidden="true"></span>18&nbsp;% polyamid</li>
+            <li><span class="mix__swatch mix__swatch--3" aria-hidden="true"></span>4&nbsp;% lycra</li>
+          </ul>
+        </figcaption>
+      </figure>
+      <ul class="fibers">
+        <li class="fiber" data-reveal style="--d:0">
+          <svg class="fiber__icon" viewBox="0 0 48 48" aria-hidden="true" focusable="false"><path pathLength="1" d="M18 42V6M26 42V6"/><path pathLength="1" d="M18 16h8M18 29h8"/><path pathLength="1" d="M26 20c4-6 10-8 16-7-1 6-6 10-16 10"/></svg>
+          <p class="fiber__pct">78&nbsp;%</p>
+          <h3>Viskos från bambu</h3>
+          <p>Ger strumpan dess mjuka, släta känsla mot huden. Fibern andas och leder bort fukt, något som också hjälper mot lukt.</p>
+          <ul class="fiber__tags" aria-label="Egenskaper"><li>Mjuk</li><li>Andas</li><li>Leder bort fukt</li></ul>
+        </li>
+        <li class="fiber" data-reveal style="--d:1">
+          <svg class="fiber__icon" viewBox="0 0 48 48" aria-hidden="true" focusable="false"><path pathLength="1" d="M6 16c6 0 6 16 12 16s6-16 12-16 6 16 12 16"/><path pathLength="1" d="M6 32c6 0 6-16 12-16s6 16 12 16 6-16 12-16"/></svg>
+          <p class="fiber__pct">18&nbsp;%</p>
+          <h3>Polyamid</h3>
+          <p>En stark och nötningstålig fiber. Den ger strumpan slitstyrka, så att den mjuka viskosen håller längre.</p>
+          <ul class="fiber__tags" aria-label="Egenskaper"><li>Stark</li><li>Slitstark</li></ul>
+        </li>
+        <li class="fiber" data-reveal style="--d:2">
+          <svg class="fiber__icon" viewBox="0 0 48 48" aria-hidden="true" focusable="false"><path pathLength="1" d="M4 24h7M37 24h7"/><path pathLength="1" d="M8 19l-4 5 4 5M40 19l4 5-4 5"/><path pathLength="1" d="M11 24l2.5-6 3 12 3-12 3 12 3-12 3 12 3-12 2.5 6"/></svg>
+          <p class="fiber__pct">4&nbsp;%</p>
+          <h3>Lycra</h3>
+          <p>En elastisk fiber som ger stretch och återgång. Strumpan behåller formen och sitter kvar där den ska.</p>
+          <ul class="fiber__tags" aria-label="Egenskaper"><li>Stretch</li><li>Behåller formen</li></ul>
+        </li>
+      </ul>
+      <div class="quality__close" data-reveal>
+        <p class="quality__line"><span>Samma strumpa i varje par.</span> <span>Vill du ha nya par hem med jämna mellanrum?</span></p>
+        <a class="btn" href="#prenumeration" data-magnetic>Se prenumerationen {{ARROW}}</a>
+      </div>
+    </div>
+  </section>
+
   <section class="moment" aria-labelledby="moment-title">
     <div class="wrap moment__inner">
       <h2 id="moment-title" class="visually-hidden">Strumpverket</h2>
@@ -83,11 +141,9 @@
         <div>
           <ol class="points">
             <li data-reveal><span class="label">01</span><div><h3>En färg, inga udda par</h3><p>Svart passar till kostym, jeans och träningsskor. När varje par är likadant behöver du aldrig sortera strumpor igen. Tappar du en, tar du nästa.</p></div></li>
-            <li data-reveal><span class="label">02</span><div><h3>Viskos från bambu</h3><p>En fiber som framställs av cellulosa från bambu. Den känns mjuk och slät mot huden och upplevs som sval och luftig att bära.</p></div></li>
-            <li data-reveal><span class="label">03</span><div><h3>Stretch som håller formen</h3><p>Polyamid och lycra ger strumpan stretch, gör den slitstarkare och hjälper den att sitta kvar där den ska.</p></div></li>
-            <li data-reveal><span class="label">04</span><div><h3>Färre, bättre par</h3><p>Hellre en låda med likadana strumpor du gillar än en hög du aldrig använder. Ett litet sortiment gör det lätt att välja.</p></div></li>
+            <li data-reveal><span class="label">02</span><div><h3>Färre, bättre par</h3><p>Hellre en låda med likadana strumpor du gillar än en hög du aldrig använder. Ett litet sortiment gör det lätt att välja.</p></div></li>
           </ol>
-          <p class="why__note">Material: {{MATERIAL}}</p>
+          <p class="why__note">Material: {{MATERIAL}} <a class="u-link hit" href="#kvalitet">Därför håller de</a></p>
         </div>
       </div>
     </div>
