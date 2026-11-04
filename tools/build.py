@@ -16,7 +16,7 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 
 # --- origins (see module docstring) ---
 SITE = "https://strumpverket.se"
-ASSET_ORIGIN = "https://cargrammer-jpg.github.io/strumpverket"
+ASSET_ORIGIN = SITE
 
 LASTMOD = "2026-11-03"
 OG_HOME = f"{ASSET_ORIGIN}/assets/og.jpg?v=3"
