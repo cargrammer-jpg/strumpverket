@@ -1,7 +1,7 @@
 # Strumpverket
 
 Statisk sajt för Strumpverket, en butik som bara säljer svarta premiumstrumpor i viskos från bambu.
-Ren HTML, CSS och JS utan ramverk. Förhandsvisning: https://cargrammer-jpg.github.io/strumpverket/
+Ren HTML, CSS och JS utan ramverk. Förhandsvisning: https://strumpverket.se/ (tidigare https://cargrammer-jpg.github.io/strumpverket/)
 
 - Sortiment: 5-pack 249 kr och 10-pack 449 kr inkl. moms. Frakt 39 kr per beställning tillkommer (PostNord till brevlådan).
 - Prenumeration: 5-pack var 3:e månad 229 kr och 10-pack var 4:e månad 379 kr, båda inkl. frakt. Startar snart.
