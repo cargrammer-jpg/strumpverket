@@ -45,8 +45,19 @@ SOCIAL = [
     ("x", "X", "https://x.com/STRUMPVERKET"),
     ("tiktok", "TikTok", "https://www.tiktok.com/@strumpverket.se"),
 ]
+def social_svg(n):
+    d = icon_path(n)
+    if n == "tiktok":
+        # TikTok's own look: cyan and red copies offset behind a white mark.
+        # Solid vector fills, no filters, so it stays sharp at 1x and 2x.
+        return ('<svg viewBox="-1 -1 26 26" aria-hidden="true" focusable="false">'
+                f'<path fill="#25F4EE" transform="translate(-0.9 -0.9)" d="{d}"/>'
+                f'<path fill="#FE2C55" transform="translate(0.9 0.9)" d="{d}"/>'
+                f'<path fill="#FFFFFF" d="{d}"/></svg>')
+    return f'<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="{d}"/></svg>'
+
 socials = "\n".join(
-    f'<li><a class="soc soc--{n}" href="{url}" target="_blank" rel="noopener noreferrer" aria-label="STRUMPVERKET på {label}"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="{icon_path(n)}"/></svg></a></li>'
+    f'<li><a class="soc soc--{n}" href="{url}" target="_blank" rel="noopener noreferrer" aria-label="STRUMPVERKET på {label}">{social_svg(n)}</a></li>'
     for n, label, url in SOCIAL)
 SAME_AS = [url for _, _, url in SOCIAL]
 

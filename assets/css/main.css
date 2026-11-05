@@ -893,39 +893,41 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .btn--light:focus-visible, .btn--ghost-light:focus-visible { outline-color: var(--paper); }
 .add-btn { min-height: 46px; }
 
-/* ---------- Hero: dark panel that stands apart from the white page ---------- */
+/* ---------- Hero: light grey panel that stands apart from the white page ---------- */
 .hero { padding-top: clamp(0.75rem, 0.25rem + 1.5vw, 1.75rem); }
 .hero__panel {
   position: relative; isolation: isolate; overflow: hidden;
   padding: clamp(1.5rem, 0.75rem + 3vw, 3.5rem);
   border-radius: var(--radius-lg);
-  background: radial-gradient(120% 90% at 85% 0%, #2a2825 0%, var(--ink) 55%) var(--ink);
-  color: var(--paper);
-  box-shadow: var(--shadow-2);
+  border: 1px solid #d9d8d3;
+  background: linear-gradient(160deg, #ececea 0%, #e6e6e3 100%);
+  color: var(--ink);
+  box-shadow: 0 1px 2px rgb(17 17 17 / 0.05), 0 24px 48px -28px rgb(17 17 17 / 0.28);
 }
-.hero__panel :focus-visible { outline-color: var(--paper); }
-.hero__panel .label { color: #b5b0a7; }
+.hero__panel .label { color: #55524c; }   /* 6.6:1 on #e6e6e3 */
 .hero__top { gap: var(--s-5); }
 .hero__head { gap: var(--s-4); }
 .hero__eyebrow { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s-2) var(--s-3); }
 .hero__seal { display: inline-flex; align-items: center; gap: 0.5em; padding: 0.4em 0.85em 0.35em; border-radius: 999px;
-  background: var(--paper); color: var(--ink); font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.06em; text-transform: uppercase; line-height: 1.3; }
-.hero__seal::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--bronze); }
+  background: var(--ink); color: var(--paper); font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.06em; text-transform: uppercase; line-height: 1.3; }
+.hero__seal::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--bronze-dark); }
 .hero h1 { letter-spacing: -0.045em; }
-.hero__lede { color: #e3dfd8; font-size: var(--step-1); }
-.hero__promise { color: #cfcac2; border-top-color: rgb(255 255 255 / 0.16); font-size: 0.875rem; }
-.hero__promise strong { color: var(--paper); }
+.hero__lede { color: var(--ink-2); font-size: var(--step-1); }
+.hero__promise { color: var(--ink-2); border-top-color: #cfcdc7; font-size: 0.875rem; }
+.hero__promise strong { color: var(--ink); }
 .hero__cta { gap: var(--s-3); }
 .hero__cta .btn { padding-inline: 1.3em; }
-.hero__sub-note { font-size: 0.8125rem; color: #b5b0a7; }
+.hero__cta .btn--ghost { border-color: var(--ink); }
+.hero__sub-note { font-size: 0.8125rem; color: #55524c; }
+.hero__sub-note strong { color: var(--ink); font-weight: 600; }
 .hero__aside { gap: var(--s-4); max-width: 34rem; }
 .hero__media { margin: clamp(1.5rem, 1rem + 2vw, 2.5rem) 0 0; }
-.hero__frame { border-radius: var(--radius); background: #f3f3f2; box-shadow: 0 0 0 1px rgb(255 255 255 / 0.08), 0 30px 60px -30px rgb(0 0 0 / 0.8); }
+.hero__frame { border-radius: var(--radius); background: #f3f3f2; box-shadow: 0 0 0 1px rgb(17 17 17 / 0.06), 0 22px 44px -26px rgb(17 17 17 / 0.35); }
 .hero__frame video, .hero__frame picture, .hero__frame img { object-position: 64% 50%; }
-.media-toggle { background: color-mix(in srgb, var(--paper) 90%, transparent); }
+.media-toggle { background: color-mix(in srgb, var(--paper) 92%, transparent); box-shadow: 0 0 0 1px rgb(17 17 17 / 0.08); }
 .hero__caption { padding-top: var(--s-3); }
-.hero__spec { margin-top: var(--s-5); border-top-color: rgb(255 255 255 / 0.16); }
-.hero__spec dt { color: #b5b0a7; }
+.hero__spec { margin-top: var(--s-5); border-top-color: var(--ink); }
+.hero__spec dt { color: #55524c; }
 .hero__spec dd { font-size: var(--step-2); }
 @media (min-width: 60rem) {
   .hero__top { grid-template-columns: 1.1fr 1fr; gap: var(--s-7); align-items: center; }
@@ -1051,38 +1053,34 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .cart-item img { border-radius: 8px; }
 
 /* ---------- Social icons in brand colors ----------
-   Instagram: official gradient tile with a white glyph. TikTok: black tile,
-   white glyph with the cyan and red offset. X: monochrome. Same 44px
-   targets everywhere; labels carry the name for assistive tech. */
-.soc { position: relative; isolation: isolate; }
-.socials a.soc, .header-socials a.soc { border-color: transparent; }
-.soc svg { position: relative; }
-.soc--instagram, .socials a.soc--instagram, .header-socials a.soc--instagram {
-  color: #fff;
-  background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285aeb 90%);
+   Simple Icons marks as solid fills on solid tiles. Whole-pixel tile and
+   glyph sizes, no filters, no opacity, so the marks stay sharp at 1x and 2x.
+   Instagram: gradient tile, white mark. TikTok: black tile, white mark with
+   cyan and red offset copies drawn as vector paths. X: black tile, white mark
+   (white tile, black mark on the black footer). Labels carry the names. */
+.socials, .header-socials { gap: 10px; }
+a.soc {
+  display: inline-grid; place-items: center; box-sizing: border-box;
+  width: 44px; height: 44px; border: 0; border-radius: 12px;
+  color: #fff; background: #000; text-decoration: none;
+  transition: translate 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out);
 }
-.soc--tiktok, .socials a.soc--tiktok, .header-socials a.soc--tiktok { color: #fff; background: #000; }
-.soc--tiktok svg { filter: drop-shadow(-1.25px -1.25px 0 #25f4ee) drop-shadow(1.25px 1.25px 0 #fe2c55); }
-.soc--x, .socials a.soc--x, .header-socials a.soc--x { color: #fff; background: #000; }
-.site-footer .socials a.soc--x { color: #000; background: #fff; }
-.site-footer .socials a.soc--tiktok { box-shadow: inset 0 0 0 1px #45423d; }
-.header-socials a.soc { width: 36px; height: 36px; margin: 4px; }
-.header-socials a.soc svg { width: 16px; height: 16px; }
-.header-socials { gap: 0; }
-.socials a.soc:hover, .socials a.soc:focus-visible,
-.header-socials a.soc:hover, .header-socials a.soc:focus-visible { translate: 0 -2px; box-shadow: 0 8px 18px -10px rgb(17 17 17 / 0.55); }
-.socials a.soc--instagram:hover, .socials a.soc--instagram:focus-visible,
-.header-socials a.soc--instagram:hover, .header-socials a.soc--instagram:focus-visible { color: #fff; background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285aeb 90%); }
-.socials a.soc--tiktok:hover, .socials a.soc--tiktok:focus-visible,
-.header-socials a.soc--tiktok:hover, .header-socials a.soc--tiktok:focus-visible,
-.socials a.soc--x:hover, .socials a.soc--x:focus-visible,
-.header-socials a.soc--x:hover, .header-socials a.soc--x:focus-visible { color: #fff; background: #000; }
+a.soc svg { display: block; width: 24px; height: 24px; fill: currentColor; filter: none; }
+a.soc--tiktok svg { width: 26px; height: 26px; }
+a.soc--instagram { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285aeb 90%); }
+.header-socials a.soc { width: 40px; height: 40px; margin: 0; border-radius: 11px; }
+.header-socials a.soc svg { width: 22px; height: 22px; }
+.header-socials a.soc--tiktok svg { width: 24px; height: 24px; }
+.site-footer a.soc--x { color: #000; background: #fff; }
+.site-footer a.soc--tiktok { box-shadow: inset 0 0 0 1px #4a4740; }
+a.soc:hover, a.soc:focus-visible { translate: 0 -2px; box-shadow: 0 8px 18px -10px rgb(17 17 17 / 0.6); }
+.site-footer a.soc:hover, .site-footer a.soc:focus-visible { box-shadow: 0 0 0 1px #4a4740, 0 8px 18px -8px rgb(0 0 0 / 0.9); }
+/* Keep tile colors on hover; only the old generic .socials hover swapped them. */
+.socials a.soc:hover, .socials a.soc:focus-visible, .header-socials a.soc:hover, .header-socials a.soc:focus-visible { color: #fff; background-color: #000; border-color: transparent; }
+.socials a.soc--instagram:hover, .socials a.soc--instagram:focus-visible, .header-socials a.soc--instagram:hover, .header-socials a.soc--instagram:focus-visible { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285aeb 90%); }
 .site-footer .socials a.soc--x:hover, .site-footer .socials a.soc--x:focus-visible { color: #000; background: #fff; }
-.soc:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
-.site-footer .soc:focus-visible { outline-color: var(--paper); }
-@media (prefers-reduced-motion: reduce) {
-  .socials a.soc:hover, .socials a.soc:focus-visible, .header-socials a.soc:hover, .header-socials a.soc:focus-visible { translate: none; }
-}
-.hero__sub-note strong { color: var(--paper); font-weight: 600; }
+a.soc:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+.site-footer a.soc:focus-visible { outline-color: var(--paper); }
+@media (prefers-reduced-motion: reduce) { a.soc:hover, a.soc:focus-visible { translate: none; } }
 @media (max-width: 59.99rem) { .trust__list li:last-child:nth-child(odd) { grid-column: 1 / -1; } }
 .mobile-socials .socials { display: flex; flex-wrap: wrap; gap: var(--s-2); }
