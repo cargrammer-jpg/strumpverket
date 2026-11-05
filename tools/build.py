@@ -46,7 +46,7 @@ SOCIAL = [
     ("tiktok", "TikTok", "https://www.tiktok.com/@strumpverket.se"),
 ]
 socials = "\n".join(
-    f'<li><a href="{url}" target="_blank" rel="noopener noreferrer" aria-label="STRUMPVERKET på {label}"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="{icon_path(n)}"/></svg></a></li>'
+    f'<li><a class="soc soc--{n}" href="{url}" target="_blank" rel="noopener noreferrer" aria-label="STRUMPVERKET på {label}"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="{icon_path(n)}"/></svg></a></li>'
     for n, label, url in SOCIAL)
 SAME_AS = [url for _, _, url in SOCIAL]
 
@@ -83,6 +83,9 @@ for _s in SUBS:
     if _s["saved"] <= 0:
         raise SystemExit(f'no subscription saving for {_s["id"]}')
     _s["pct"] = int(round(_s["saved"] * 100 / _s["oneoff"]))
+SUB_FROM = min(sb["price"] for sb in SUBS)
+SUB_MAX_SAVED = max(sb["saved"] for sb in SUBS)
+SUB_BY_PACK = {sb["pack"]: sb for sb in SUBS}
 
 def per_pair(p):
     return f'{p["price"] / p["pairs"]:.2f}'.replace(".", ",") + " kr per par"
@@ -147,6 +150,14 @@ def form_attrs(p_id, name, price, img, ship):
     return (f'data-product="{p_id}" data-name="{name}" data-price="{price}" '
             f'data-img="assets/img/{img}-400.webp" data-ship="{ship}"')
 
+def sub_nudge(p):
+    sb = SUB_BY_PACK.get(p["id"])
+    if not sb:
+        return ""
+    return (f'<a class="sub-nudge" href="{{{{ROOT}}}}#prenumeration"><span class="sub-nudge__tag">Prenumerera</span>'
+            f'<span class="sub-nudge__text">{sb["price"]} kr {sb["every"]}, frakt ingår. Spara {sb["saved"]} kr.</span>'
+            f'<span class="sub-nudge__arrow" aria-hidden="true">{ARROW}</span></a>')
+
 cards = []
 for i, p in enumerate(PRODUCTS):
     pic = picture(p["img"], p["alt"], CARD_SIZES, [400, 768], 768, 1024)
@@ -170,6 +181,7 @@ for i, p in enumerate(PRODUCTS):
       {size_fieldset()}
       {guide_link()}
       {add_button(desc="p-" + p["id"])}
+      {sub_nudge(p)}
     </div>
   </form>
 </li>''')
@@ -177,12 +189,14 @@ for i, p in enumerate(PRODUCTS):
 sub_cards = []
 for i, sb in enumerate(SUBS):
     pk = BY_ID[sb["pack"]]
+    featured = sb["saved"] == SUB_MAX_SAVED
+    flag = '<span class="sub__flag">Störst besparing</span>' if featured else ""
     sub_cards.append(f'''
-<li class="sub-card" data-reveal style="--d:{i}">
+<li class="sub-card{" sub-card--featured" if featured else ""}" data-reveal style="--d:{i}">
   <form class="sub" {form_attrs(sb["id"], f'Prenumeration {pk["name"]}, {sb["every"]}', sb["price"], pk["img"], 0)} aria-labelledby="s-{sb["id"]}">
-    <p class="label">Prenumeration · Startar snart</p>
+    <div class="sub__top"><p class="label">Prenumeration · {pk["pairs"]} par</p>{flag}</div>
     <h3 class="sub__name" id="s-{sb["id"]}">{pk["name"]} <span>{sb["every"]}</span></h3>
-    <p class="sub__price"><strong>{sb["price"]} kr</strong> <span class="label">per leverans, inkl. frakt</span></p>
+    <p class="sub__price"><strong>{sb["price"]} kr</strong> <span class="sub__per">per leverans, inkl. frakt</span></p>
     <p class="save-line"><span class="save-badge">Spara {sb["saved"]} kr</span><span class="save-note">jämfört med {pk["price"]} kr + {SHIPPING} kr frakt ({sb["oneoff"]} kr)</span></p>
     <ul class="box__list">
       <li>{pk["pairs"]} par i din storlek {sb["every"]}</li>
@@ -193,6 +207,26 @@ for i, sb in enumerate(SUBS):
     {add_button("Lägg prenumerationen i varukorg", desc="s-" + sb["id"])}
   </form>
 </li>''')
+
+CHECK_ICON = '<svg viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M4.5 10.5l3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+SUB_PERKS_LIST = [
+    ("Frakten ingår", "PostNord till brevlådan, utan fraktavgift."),
+    (f"Spara upp till {SUB_MAX_SAVED} kr", "per leverans, jämfört med ett vanligt köp med frakt."),
+    ("Samma strumpa varje gång", "Bästa kvalitet i varje par, i din storlek."),
+]
+sub_perks = "".join(f'<li>{CHECK_ICON}<span><strong>{t}</strong> {d}</span></li>' for t, d in SUB_PERKS_LIST)
+
+def sub_highlight(p):
+    sb = SUB_BY_PACK.get(p["id"])
+    if not sb:
+        return ""
+    return f'''<aside class="pdp-sub" aria-labelledby="pdp-sub-title">
+        <div class="pdp-sub__head"><p class="label pdp-sub__label">Prenumeration · Startar snart</p><span class="save-badge">Spara {sb["saved"]} kr</span></div>
+        <h2 id="pdp-sub-title" class="pdp-sub__title">Prenumerera på {p["name"]}, {sb["every"]}</h2>
+        <p class="pdp-sub__price"><strong>{sb["price"]} kr</strong> <span>per leverans, frakten ingår</span></p>
+        <p class="pdp-sub__text">Jämfört med {p["price"]} kr + {SHIPPING} kr frakt ({sb["oneoff"]} kr) vid ett vanligt köp. Samma strumpa, bästa kvalitet, hem till brevlådan.</p>
+        <a class="btn btn--block" href="{{{{ROOT}}}}#prenumeration">Välj prenumeration {{{{ARROW}}}}</a>
+      </aside>'''
 
 mat_pic = picture("material", MAT_ALT, "(min-width: 60rem) 46vw, 92vw", [640, 1024], 1024, 768)
 
@@ -318,6 +352,7 @@ def product_main(p):
       <p class="pdp__more-text">{p["more"]}</p>
       {price}
       {save_badge(p)}
+      {sub_highlight(p)}
       <p class="callout"><strong>{SHIP_LINE}</strong> {CHECKOUT_SOON}</p>
       <form class="pdp__form" {form_attrs(p["id"], p["full_name"], p["price"], p["img"], 1)} aria-label="{p["full_name"]}">
         {size_fieldset()}
@@ -373,7 +408,7 @@ SHELL = (ROOT / "tools" / "shell.template.html").read_text()
 HOME = (ROOT / "tools" / "home.html").read_text()
 HOME_EXTRA = ('<link rel="preload" as="image" type="image/avif" '
               'imagesrcset="{{ROOT}}assets/img/hero-640.avif 640w, {{ROOT}}assets/img/hero-1280.avif 1280w" '
-              'imagesizes="(min-width: 90rem) 84rem, 94vw" fetchpriority="high">')
+              'imagesizes="(min-width: 72rem) 68rem, 90vw" fetchpriority="high">')
 
 def render(prefix, main, meta):
     html = SHELL.replace("{{MAIN}}", main).replace("{{SOCIALS}}", socials)
@@ -383,7 +418,7 @@ def render(prefix, main, meta):
     for key in ("TITLE", "OG_TITLE", "DESCRIPTION", "CANONICAL", "OG_IMAGE", "OG_W", "OG_H", "OG_ALT"):
         html = html.replace("{{" + key + "}}", meta[key])
     html = html.replace("{{ARROW}}", ARROW).replace("{{ROOT}}", prefix)
-    html = html.replace("{{SHIPPING}}", str(SHIPPING))
+    html = html.replace("{{SHIPPING}}", str(SHIPPING)).replace("{{SUB_FROM}}", str(SUB_FROM))
     leftover = re.findall(r"\{\{[A-Z0-9_]+\}\}", html)
     if leftover:
         raise SystemExit(f"unreplaced placeholders: {leftover}")
@@ -400,6 +435,7 @@ def write(rel, html):
 
 home_main = (HOME.replace("{{CARDS}}", "".join(cards))
              .replace("{{SUBS}}", "".join(sub_cards))
+             .replace("{{SUB_PERKS}}", sub_perks)
              .replace("{{MAT_PIC}}", mat_pic)
              .replace("{{MATERIAL}}", MATERIAL)
              .replace("{{SHIP_LINE}}", SHIP_LINE)

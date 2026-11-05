@@ -38,7 +38,7 @@
 </head>
 <body>
 <a class="skip-link" href="#innehall">Hoppa till innehållet</a>
-<p class="demo-bar">Förhandsvisning · Kassan öppnar snart</p>
+<div class="demo-bar"><p><span class="demo-bar__tag">Förhandsvisning</span> <a class="demo-bar__link" href="{{ROOT}}#prenumeration"><span>Prenumeration från {{SUB_FROM}} kr inkl. frakt, startar snart</span> <svg viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M3 10h13M11 5l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></a></p></div>
 
 <header class="site-header">
   <div class="wrap">
@@ -47,7 +47,7 @@
         <ul>
           <li><a class="u-link hit" href="{{ROOT}}#strumpor">Strumpor</a></li>
           <li><a class="u-link hit" href="{{ROOT}}#kvalitet">Kvalitet</a></li>
-          <li><a class="u-link hit" href="{{ROOT}}#prenumeration">Prenumeration</a></li>
+          <li><a class="u-link hit nav__sub" href="{{ROOT}}#prenumeration">Prenumeration</a></li>
           <li><a class="u-link hit" href="{{ROOT}}#fragor">Frågor</a></li>
         </ul>
       </nav>
@@ -60,6 +60,7 @@
       <img class="wordmark__plain" src="{{ROOT}}assets/brand/strumpverket-wordmark-plain-black.svg" width="2114" height="207" alt="" decoding="async">
     </a>
     <div class="header-right">
+      <a class="sub-cta" href="{{ROOT}}#prenumeration"><span class="sub-cta__label">Prenumerera</span><span class="sub-cta__tag">Frakt ingår</span></a>
       <ul class="header-socials" aria-label="Sociala medier">
         {{SOCIALS}}
       </ul>
@@ -71,10 +72,10 @@
   </div>
   <nav class="mobile-nav" id="mobilmeny" aria-label="Mobilmeny">
     <ul class="wrap">
+      <li><a class="mobile-nav__sub" href="{{ROOT}}#prenumeration"><span>Prenumerera</span><span class="sub-cta__tag">Frakt ingår</span></a></li>
       <li><a href="{{ROOT}}#strumpor">Strumpor</a></li>
       <li><a href="{{ROOT}}#kvalitet">Kvalitet</a></li>
       <li><a href="{{ROOT}}#om">Om</a></li>
-      <li><a href="{{ROOT}}#prenumeration">Prenumeration</a></li>
       <li><a href="{{ROOT}}#fragor">Frågor</a></li>
       <li><a href="{{ROOT}}storleksguide/">Storleksguide</a></li>
     </ul>

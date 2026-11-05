@@ -7,10 +7,10 @@ Därför är alla bilder och videon AI-genererade för den här exempelsajten, m
 
 | Fil | Källa | Beskrivning |
 | --- | --- | --- |
-| assets/img/hero-* | AI-genererad (GenerateImage) | Vikt par svarta strumpor på ljust linne, 16:9 |
+| assets/img/hero-* | Första bildrutan ur hero-filmen (AI-genererad, se nedan) | Vikt par svarta strumpor på vit studiobakgrund, 16:9. Fungerar som affisch bakom filmen |
 | assets/img/ankel-*, vardag-*, kna-*, 3pack-*, lada-* | AI-genererade (GenerateImage) | Produktbilder på ljus bakgrund, 3:4. Bakgrundston normaliserad till #EEEBE6 |
 | assets/img/material-* | AI-genererad (GenerateImage) | Närbild på stickad textil |
-| assets/video/hero.mp4, hero.webm | AI-genererad (GenerateVideo, bild till video från hero-bilden, första och sista bildruta samma för sömlös loop) | 7 s, 1280x720, utan ljud |
+| assets/video/hero.mp4, hero.webm | AI-genererad (GenerateImage för två studiostillbilder, GenerateVideo bild till video för två klipp: långsam inzoomning på ett vikt par och en sidledes glidning längs stickningen). Klippta och ihopsatta med ffmpeg, mjuka övertoningar via vitt och sömlös loop | 10 s, 1280x720, utan ljud. MP4 H.264 cirka 1,0 MB, WebM VP9 cirka 0,7 MB |
 | assets/og.jpg | Renderad lokalt med Chrome headless (Playwright) från tools/og.html, med plåtlogotypen | 1200x630 |
 
 Bilderna föreställer inga verkliga produkter. De ska bytas mot riktiga produktfoton innan lansering.
