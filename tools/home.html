@@ -1,40 +1,43 @@
   <section class="hero" id="top" aria-labelledby="hero-title">
     <div class="wrap">
-      <div class="hero__top">
-        <div class="hero__head">
-          <p class="label hero__eyebrow">Premium · Endast svart · Viskos från bambu</p>
-          <h1 id="hero-title"><span class="line"><span>Bambustrumpor</span></span><span class="line"><span>som håller.</span></span></h1>
-        </div>
-        <div class="hero__aside">
-          <p class="hero__lede">Vi gör en enda strumpa och lägger allt på kvaliteten. Mjuk viskos från bambu, polyamid för slitstyrka och lycra som håller formen.</p>
-          <p class="hero__promise"><strong>Vårt kvalitetslöfte:</strong> bästa möjliga kvalitet i varje par. Inget annat.</p>
-          <div class="hero__cta">
-            <a class="btn" href="#strumpor" data-magnetic>Se strumporna {{ARROW}}</a>
-            <a class="u-link hit" href="#kvalitet">Därför håller de</a>
+      <div class="hero__panel">
+        <div class="hero__top">
+          <div class="hero__head">
+            <p class="hero__eyebrow"><span class="hero__seal">Bästa kvalitet</span><span class="label">Endast svart · Viskos från bambu</span></p>
+            <h1 id="hero-title"><span class="line"><span>Bambustrumpor</span></span><span class="line"><span>som håller.</span></span></h1>
+          </div>
+          <div class="hero__aside">
+            <p class="hero__lede">Vi gör en enda strumpa och lägger allt på kvaliteten. Mjuk viskos från bambu, polyamid för slitstyrka och lycra som håller formen.</p>
+            <p class="hero__promise"><strong>Vårt kvalitetslöfte:</strong> bästa möjliga kvalitet i varje par. Inget annat.</p>
+            <div class="hero__cta">
+              <a class="btn" href="#prenumeration" data-magnetic>Prenumerera {{ARROW}}</a>
+              <a class="btn btn--ghost" href="#strumpor">Se strumporna</a>
+            </div>
+            <p class="hero__sub-note"><strong>Frakten ingår</strong> i prenumerationen, från {{SUB_FROM}} kr per leverans. Startar snart.</p>
           </div>
         </div>
+        <figure class="hero__media">
+          <div class="hero__frame">
+            <picture>
+              <source type="image/avif" srcset="{{ROOT}}assets/img/hero-640.avif 640w, {{ROOT}}assets/img/hero-1280.avif 1280w" sizes="(min-width: 72rem) 68rem, 90vw">
+              <source type="image/webp" srcset="{{ROOT}}assets/img/hero-640.webp 640w, {{ROOT}}assets/img/hero-1280.webp 1280w" sizes="(min-width: 72rem) 68rem, 90vw">
+              <img src="{{ROOT}}assets/img/hero-1280.jpg" srcset="{{ROOT}}assets/img/hero-640.jpg 640w, {{ROOT}}assets/img/hero-1280.jpg 1280w" sizes="(min-width: 72rem) 68rem, 90vw" alt="Ett vikt par svarta strumpor på vit bakgrund i mjukt studioljus" width="1280" height="720" fetchpriority="high" decoding="async">
+            </picture>
+            <video muted playsinline loop autoplay preload="none" width="1280" height="720" aria-hidden="true" tabindex="-1" data-src-webm="{{ROOT}}assets/video/hero.webm?v=2" data-src-mp4="{{ROOT}}assets/video/hero.mp4?v=2"></video>
+            <button class="media-toggle" type="button" aria-label="Spela filmen" hidden>
+              <svg data-icon="pause" viewBox="0 0 12 12" aria-hidden="true" hidden><path d="M3 1.5v9M9 1.5v9" stroke="currentColor" stroke-width="1.8"/></svg>
+              <svg data-icon="play" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 1.5l7 4.5-7 4.5z" fill="currentColor"/></svg>
+              <span data-label>Spela</span>
+            </button>
+          </div>
+          <figcaption class="hero__caption"><span class="label">Fig. 01 · Premium bambustrumpa i studio, stickningen i närbild</span><span class="label">Loop · 10 s</span></figcaption>
+        </figure>
+        <dl class="hero__spec" aria-label="Material">
+          <div><dt>Viskos från bambu</dt><dd>78&nbsp;%</dd></div>
+          <div><dt>Polyamid</dt><dd>18&nbsp;%</dd></div>
+          <div><dt>Lycra</dt><dd>4&nbsp;%</dd></div>
+        </dl>
       </div>
-      <dl class="hero__spec" aria-label="Material">
-        <div><dt>Viskos från bambu</dt><dd>78&nbsp;%</dd></div>
-        <div><dt>Polyamid</dt><dd>18&nbsp;%</dd></div>
-        <div><dt>Lycra</dt><dd>4&nbsp;%</dd></div>
-      </dl>
-      <figure class="hero__media">
-        <div class="hero__frame">
-          <picture>
-            <source type="image/avif" srcset="{{ROOT}}assets/img/hero-640.avif 640w, {{ROOT}}assets/img/hero-1280.avif 1280w" sizes="(min-width: 90rem) 84rem, 94vw">
-            <source type="image/webp" srcset="{{ROOT}}assets/img/hero-640.webp 640w, {{ROOT}}assets/img/hero-1280.webp 1280w" sizes="(min-width: 90rem) 84rem, 94vw">
-            <img src="{{ROOT}}assets/img/hero-1280.jpg" srcset="{{ROOT}}assets/img/hero-640.jpg 640w, {{ROOT}}assets/img/hero-1280.jpg 1280w" sizes="(min-width: 90rem) 84rem, 94vw" alt="Ett vikt par svarta strumpor på ljust linne i mjukt dagsljus" width="1280" height="720" fetchpriority="high" decoding="async">
-          </picture>
-          <video muted playsinline loop preload="none" width="1280" height="720" aria-hidden="true" tabindex="-1" data-src-webm="{{ROOT}}assets/video/hero.webm" data-src-mp4="{{ROOT}}assets/video/hero.mp4"></video>
-          <button class="media-toggle" type="button" aria-label="Spela filmen" hidden>
-            <svg data-icon="pause" viewBox="0 0 12 12" aria-hidden="true" hidden><path d="M3 1.5v9M9 1.5v9" stroke="currentColor" stroke-width="1.8"/></svg>
-            <svg data-icon="play" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 1.5l7 4.5-7 4.5z" fill="currentColor"/></svg>
-            <span data-label>Spela</span>
-          </button>
-        </div>
-        <figcaption class="hero__caption"><span class="label">Fig. 01 · Premium bambustrumpa, vikt på linne</span><span class="label">Loop · 7 s</span></figcaption>
-      </figure>
     </div>
   </section>
 
@@ -63,6 +66,25 @@
       <ul class="products products--duo">
         {{CARDS}}
       </ul>
+    </div>
+  </section>
+
+  <section class="section box" id="prenumeration" aria-labelledby="box-title">
+    <div class="wrap">
+      <div class="box__panel">
+        <div class="box__intro" data-reveal>
+          <p class="label box__eyebrow"><span class="box__pulse" aria-hidden="true"></span>Prenumeration · Startar snart</p>
+          <h2 id="box-title">Prenumerera. Frakten ingår.</h2>
+          <p class="box__lede">Välj ett pack och ett intervall, så kommer nya strumpor hem till brevlådan innan de gamla är slitna. Billigare än att köpa styckvis och betala frakt.</p>
+          <ul class="box__perks">
+            {{SUB_PERKS}}
+          </ul>
+          <p class="box__note"><strong>Prenumerationen startar snart.</strong> Du kan lägga den i varukorgen redan nu, men ingen prenumeration startas och ingen betalning dras ännu.</p>
+        </div>
+        <ul class="subs">
+          {{SUBS}}
+        </ul>
+      </div>
     </div>
   </section>
 
@@ -149,22 +171,6 @@
     </div>
   </section>
 
-  <section class="section box" id="prenumeration" aria-labelledby="box-title">
-    <div class="wrap">
-      <div class="section-head" data-reveal>
-        <div>
-          <p class="label">Prenumeration · Startar snart</p>
-          <h2 id="box-title">Nya par hem, frakten ingår.</h2>
-        </div>
-        <p>Välj ett pack och ett intervall, så kommer nya strumpor hem till brevlådan innan de gamla är slitna. Billigare än att köpa styckvis och betala frakt.</p>
-      </div>
-      <p class="callout"><strong>Prenumerationen startar snart.</strong> Du kan lägga den i varukorgen redan nu, men ingen prenumeration startas och ingen betalning dras ännu.</p>
-      <ul class="subs">
-        {{SUBS}}
-      </ul>
-    </div>
-  </section>
-
   <section class="section" id="fragor" aria-labelledby="faq-title">
     <div class="wrap">
       <div class="section-head" data-reveal>
@@ -192,7 +198,7 @@
           <input id="epost" name="epost" type="email" autocomplete="email" inputmode="email" placeholder="namn@exempel.se" required>
           <button class="btn" type="submit" data-magnetic>Skriv upp mig {{ARROW}}</button>
         </div>
-        <p class="news__note">Nyhetsbrevet är inte igång än. Formuläret skickar eller sparar ingen data. Följ @strumpverket i sociala medier så länge.</p>
+        <p class="news__note">Nyhetsbrevet är inte igång än. Formuläret skickar eller sparar ingen data. Följ oss på Instagram, X eller TikTok så länge.</p>
         <p class="news__status" role="status"></p>
       </form>
     </div>

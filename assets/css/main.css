@@ -23,9 +23,11 @@
 }
 
 :root {
-  --paper: #f7f6f3;
-  --paper-2: #eeebe6;
-  --paper-3: #e6e2db;
+  /* Brighter studio white so the black socks carry the contrast. */
+  --paper: #fbfbfa;
+  --paper-2: #f2f1ee;
+  --paper-3: #e9e6e0;
+  --white: #ffffff;
   --ink: #111111;
   --ink-2: #3f3c37;
   --muted: #625e57;
@@ -41,26 +43,36 @@
 
   /* Type scale, roughly a 1.25 ratio on small screens opening up to about 1.333
      on wide ones. step-0 is body, step-1 lede and card titles, step-2 prices and
-     sub headings, step-3 section headings, step-4 the hero only. */
-  --step--1: 0.8125rem;
-  --step-0: 1.0625rem;
-  --step-1: clamp(1.1875rem, 1.1rem + 0.35vw, 1.375rem);
-  --step-2: clamp(1.5rem, 1.25rem + 1vw, 2rem);
-  --step-3: clamp(2.25rem, 1.55rem + 2.9vw, 4rem);
-  --step-4: clamp(2.75rem, 1.2rem + 5.6vw, 6.75rem);
+     sub headings, step-3 section headings, step-4 the hero only.
+     Desktop is tuned to read like the previous scale at 80 % zoom: the upper
+     clamp bounds and vw slopes are about 20 % lower, body never drops below 16px. */
+  --step--1: 0.75rem;
+  --step-0: 1rem;
+  --step-1: clamp(1.0625rem, 1rem + 0.2vw, 1.1875rem);
+  --step-2: clamp(1.375rem, 1.15rem + 0.6vw, 1.625rem);
+  --step-3: clamp(2rem, 1.3rem + 2.25vw, 3.25rem);
+  --step-4: clamp(2.5rem, 1.1rem + 4.3vw, 5.25rem);
 
   --s-1: 0.25rem; --s-2: 0.5rem; --s-3: 0.75rem; --s-4: 1rem; --s-5: 1.5rem;
   --s-6: 2rem; --s-7: 3rem; --s-8: 4rem; --s-9: 6rem;
-  --section: clamp(5.5rem, 3rem + 9vw, 11rem);
-  --gutter: clamp(1.25rem, 0.6rem + 2.8vw, 3rem);
-  --max: 90rem;
+  --section: clamp(4rem, 2rem + 8.3vw, 8.75rem);
+  --gutter: clamp(1.25rem, 0.6rem + 2.2vw, 2.5rem);
+  --max: 72rem;
+  --radius: 14px;
+  --radius-lg: clamp(18px, 1rem + 1vw, 28px);
+  --shadow-1: 0 1px 2px rgb(17 17 17 / 0.04), 0 4px 14px -6px rgb(17 17 17 / 0.08);
+  --shadow-2: 0 2px 4px rgb(17 17 17 / 0.04), 0 18px 40px -18px rgb(17 17 17 / 0.22);
 
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
   --header-h: 4rem;      /* visible sticky bar */
-  --masthead-h: 8rem;    /* desktop header at rest, room for the 330px plate plus clear space */
+  --masthead-h: 9rem;    /* desktop header at rest, room for the up to 380px plate plus clear space */
 
   color-scheme: light;
+}
+/* Desktop: larger spacing steps shrink by about 20 % (same feel as 80 % zoom). */
+@media (min-width: 64rem) {
+  :root { --s-6: 1.75rem; --s-7: 2.5rem; --s-8: 3.25rem; --s-9: 4.75rem; }
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -119,7 +131,7 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   transition: border-color 0.3s;
 }
 .site-header.is-scrolled { border-bottom-color: var(--line); }
-.site-header .wrap {
+.site-header > .wrap {
   height: var(--header-h);
   display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: var(--s-4);
 }
@@ -185,25 +197,25 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
    Brand rules (brand/final/README.md):
    - Plate only at 330px wide or more; below that the plain wordmark (min 106px).
    - Clear space on all sides >= 0.5 x cap height of T.
-     Plate 330px: cap 28px, clear 14px; in an 8rem (128px) bar it gets 16.5px above and below.
-     Plain 168px: cap 16px, clear 8px; in a 4rem bar it gets 24px above and below.
+     Plate 330-380px: cap 28-32px, clear 14-16px; at 380px (109px tall) in a 9rem (144px) bar it gets 17.5px above and below.
+     Plain 196-224px: cap 19-21px, clear 10-11px; in a 4rem bar it gets 21px or more above and below.
    - No recolouring, stretching, outlines or shadows: the images are only revealed, faded and moved. */
 .wordmark { display: block; position: relative; text-decoration: none; color: var(--ink); padding: 8px; margin: -8px; }
 .wordmark img { display: block; max-width: none; height: auto; }
-.wordmark .wordmark__plate { display: none; width: 330px; }
-.wordmark__plain { width: 168px; }
-@media (min-width: 40rem) { .wordmark__plain { width: 196px; } }
+.wordmark .wordmark__plate { display: none; width: clamp(330px, 250px + 9vw, 380px); }
+.wordmark__plain { width: 196px; }
+@media (min-width: 40rem) { .wordmark__plain { width: 224px; } }
 
 /* Desktop: masthead with the plate. The header is 8rem tall but sticks at -4rem, so once scrolled only
    its lower 4rem stays visible; the plate fades out and the plain wordmark fades in there. Only opacity
    and translate change, so nothing below the header moves (no layout shift). */
 @media (min-width: 64rem) {
   .site-header { top: calc(var(--header-h) - var(--masthead-h)); }
-  .site-header .wrap { position: relative; height: var(--masthead-h); }
+  .site-header > .wrap { position: relative; height: var(--masthead-h); }
   .wordmark { position: static; }
   .wordmark .wordmark__plate { display: block; transition: opacity 0.35s var(--ease-out); }
   .wordmark__plain {
-    position: absolute; inset-inline: 0; bottom: calc((var(--header-h) - 19px) / 2); margin-inline: auto;
+    position: absolute; inset-inline: 0; bottom: calc((var(--header-h) - 22px) / 2); margin-inline: auto;
     opacity: 0; visibility: hidden; translate: 0 6px;
     transition: opacity 0.35s var(--ease-out), translate 0.5s var(--ease-out), visibility 0s linear 0.35s;
   }
@@ -591,6 +603,61 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 }
 .socials svg { width: 18px; height: 18px; fill: currentColor; }
 .socials-col { grid-column: 1 / -1; }
+
+/* Header socials: same 44px targets, ink on paper. Shown from the masthead
+   breakpoint so the sticky bar stays uncrowded on phones and small tablets. */
+.header-socials {
+  display: none;
+  align-items: center;
+  gap: 2px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.header-socials a {
+  display: inline-grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  color: var(--ink);
+  border: 1px solid transparent;
+  transition: background-color 0.3s, border-color 0.3s, translate 0.3s var(--ease-out);
+}
+.header-socials a:hover,
+.header-socials a:focus-visible {
+  background: var(--paper-2);
+  border-color: var(--line);
+  translate: 0 -2px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .header-socials a:hover,
+  .header-socials a:focus-visible { translate: none; }
+}
+.header-socials svg { width: 18px; height: 18px; fill: currentColor; }
+@media (min-width: 64rem) {
+  .header-socials { display: flex; }
+}
+
+/* Light socials (mobile menu): paper background, dark ring. */
+.socials--light a {
+  color: var(--ink);
+  border-color: var(--line);
+}
+.socials--light a:hover,
+.socials--light a:focus-visible {
+  background: var(--ink);
+  color: var(--paper);
+  border-color: var(--ink);
+}
+.mobile-socials {
+  display: grid;
+  gap: var(--s-3);
+  padding-bottom: var(--s-5);
+  border-top: 1px solid var(--line);
+  padding-top: var(--s-4);
+}
+.mobile-socials .label { margin: 0; }
 .pay-block { margin-top: var(--s-8); }
 .pay-block h2 {
   font-family: var(--font-mono);
@@ -786,3 +853,234 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   .fiber__icon { transition: translate 0.5s var(--ease-out); }
   .fiber:hover .fiber__icon { translate: 0 -3px; }
 }
+
+/* =====================================================================
+   Redesign 2026-11: compact desktop scale, contrast hero panel,
+   subscription first, brand colored social icons.
+   ===================================================================== */
+
+/* ---------- Announcement bar ---------- */
+.demo-bar { padding: 0; font-size: 0.75rem; }
+.demo-bar p { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 0.25rem 0.75rem; padding: 0.35rem var(--gutter); }
+.demo-bar__tag { color: #b5b0a7; }
+.demo-bar__link { display: inline-flex; align-items: center; gap: 0.5em; min-height: 32px; color: var(--paper); text-decoration: none; }
+.demo-bar__link span { background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat; transition: background-size 0.45s var(--ease-out); }
+.demo-bar__link:hover span, .demo-bar__link:focus-visible span { background-size: 100% 1px; }
+.demo-bar__link svg { width: 14px; height: 14px; transition: translate 0.45s var(--ease-out); }
+.demo-bar__link:hover svg, .demo-bar__link:focus-visible svg { translate: 3px 0; }
+.demo-bar :focus-visible { outline-color: var(--paper); }
+
+/* ---------- Header ---------- */
+.site-header > .wrap { max-width: calc(var(--max) + 10rem); }
+.site-header { background: color-mix(in srgb, var(--paper) 90%, transparent); }
+.nav a { font-size: 0.875rem; font-weight: 500; }
+.nav__sub::before { content: ""; width: 6px; height: 6px; margin-right: 0.45em; border-radius: 50%; background: var(--bronze); }
+.sub-cta { display: none; align-items: center; gap: 0.5rem; min-height: 40px; padding: 0 0.4rem 0 1rem; margin-right: var(--s-2);
+  border-radius: 999px; background: var(--ink); color: var(--paper); font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.01em; text-decoration: none;
+  transition: background-color 0.3s, translate 0.4s var(--ease-out), box-shadow 0.4s var(--ease-out); }
+.sub-cta:hover, .sub-cta:focus-visible { background: #2a2825; translate: 0 -1px; box-shadow: 0 10px 22px -14px rgb(17 17 17 / 0.6); }
+.sub-cta__tag { display: inline-block; padding: 0.3em 0.65em 0.25em; border-radius: 999px; background: var(--paper); color: var(--ink);
+  font-family: var(--font-mono); font-size: 0.625rem; font-weight: 400; letter-spacing: 0.06em; text-transform: uppercase; line-height: 1.3; white-space: nowrap; }
+@media (min-width: 72rem) { .sub-cta { display: inline-flex; } }
+.mobile-nav a.mobile-nav__sub { display: flex; justify-content: space-between; align-items: center; gap: var(--s-3); margin-bottom: var(--s-3); padding: var(--s-3) var(--s-4);
+  border-radius: var(--radius); background: var(--ink); color: var(--paper); font-size: var(--step-1); }
+@media (prefers-reduced-motion: reduce) { .sub-cta:hover, .sub-cta:focus-visible { translate: none; } }
+
+/* ---------- Buttons ---------- */
+.btn { min-height: 48px; padding: 0 1.5em; font-size: 0.875rem; font-weight: 600; }
+.btn--light { --btn-bg: var(--paper); --btn-fg: var(--ink); --btn-fill: var(--bronze-dark); --btn-fill-fg: var(--ink); border-color: var(--paper); }
+.btn--ghost-light { --btn-bg: transparent; --btn-fg: var(--paper); --btn-fill: var(--paper); --btn-fill-fg: var(--ink); border-color: rgb(255 255 255 / 0.45); }
+.btn--light:focus-visible, .btn--ghost-light:focus-visible { outline-color: var(--paper); }
+.add-btn { min-height: 46px; }
+
+/* ---------- Hero: light grey panel that stands apart from the white page ---------- */
+.hero { padding-top: clamp(0.75rem, 0.25rem + 1.5vw, 1.75rem); }
+.hero__panel {
+  position: relative; isolation: isolate; overflow: hidden;
+  padding: clamp(1.5rem, 0.75rem + 3vw, 3.5rem);
+  border-radius: var(--radius-lg);
+  border: 1px solid #d9d8d3;
+  background: linear-gradient(160deg, #ececea 0%, #e6e6e3 100%);
+  color: var(--ink);
+  box-shadow: 0 1px 2px rgb(17 17 17 / 0.05), 0 24px 48px -28px rgb(17 17 17 / 0.28);
+}
+.hero__panel .label { color: #55524c; }   /* 6.6:1 on #e6e6e3 */
+.hero__top { gap: var(--s-5); }
+.hero__head { gap: var(--s-4); }
+.hero__eyebrow { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s-2) var(--s-3); }
+.hero__seal { display: inline-flex; align-items: center; gap: 0.5em; padding: 0.4em 0.85em 0.35em; border-radius: 999px;
+  background: var(--ink); color: var(--paper); font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.06em; text-transform: uppercase; line-height: 1.3; }
+.hero__seal::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--bronze-dark); }
+.hero h1 { letter-spacing: -0.045em; }
+.hero__lede { color: var(--ink-2); font-size: var(--step-1); }
+.hero__promise { color: var(--ink-2); border-top-color: #cfcdc7; font-size: 0.875rem; }
+.hero__promise strong { color: var(--ink); }
+.hero__cta { gap: var(--s-3); }
+.hero__cta .btn { padding-inline: 1.3em; }
+.hero__cta .btn--ghost { border-color: var(--ink); }
+.hero__sub-note { font-size: 0.8125rem; color: #55524c; }
+.hero__sub-note strong { color: var(--ink); font-weight: 600; }
+.hero__aside { gap: var(--s-4); max-width: 34rem; }
+.hero__media { margin: clamp(1.5rem, 1rem + 2vw, 2.5rem) 0 0; }
+.hero__frame { border-radius: var(--radius); background: #f3f3f2; box-shadow: 0 0 0 1px rgb(17 17 17 / 0.06), 0 22px 44px -26px rgb(17 17 17 / 0.35); }
+.hero__frame video, .hero__frame picture, .hero__frame img { object-position: 64% 50%; }
+.media-toggle { background: color-mix(in srgb, var(--paper) 92%, transparent); box-shadow: 0 0 0 1px rgb(17 17 17 / 0.08); }
+.hero__caption { padding-top: var(--s-3); }
+.hero__spec { margin-top: var(--s-5); border-top-color: var(--ink); }
+.hero__spec dt { color: #55524c; }
+.hero__spec dd { font-size: var(--step-2); }
+@media (min-width: 60rem) {
+  .hero__top { grid-template-columns: 1.1fr 1fr; gap: var(--s-7); align-items: center; }
+}
+
+/* ---------- Trust row ---------- */
+.trust { border: 0; padding-block: var(--s-5) 0; margin-top: 0; }
+.trust__list { gap: var(--s-3); }
+.trust__list li { padding: var(--s-3) var(--s-4); border: 1px solid var(--line); border-radius: var(--radius); background: var(--white); }
+.trust__value { font-size: 0.9375rem; }
+
+/* ---------- Section rhythm ---------- */
+.section-head { margin-bottom: clamp(2rem, 1.25rem + 2.5vw, 3.75rem); }
+.section-head > p { font-size: var(--step-1); max-width: 30rem; }
+.section-head + .callout { margin-top: calc(-1 * clamp(0.75rem, 0.5rem + 1vw, 1.75rem)); margin-bottom: clamp(1.5rem, 1rem + 1.5vw, 2.25rem); }
+.callout { border-radius: 0 var(--radius) var(--radius) 0; font-size: 0.875rem; }
+
+/* ---------- Product cards ---------- */
+.products--duo .product-card {
+  gap: 0; padding: var(--s-3); border: 1px solid var(--line); border-radius: calc(var(--radius) + 6px);
+  background: var(--white); box-shadow: var(--shadow-1);
+  transition: box-shadow 0.5s var(--ease-out), translate 0.5s var(--ease-out), border-color 0.3s;
+}
+.products--duo .product-card:hover, .products--duo .product-card:focus-within { box-shadow: var(--shadow-2); border-color: #cbc5bb; }
+@media (prefers-reduced-motion: no-preference) {
+  .products--duo .product-card:hover { translate: 0 -3px; }
+}
+.products--duo .product__media { border-radius: var(--radius); }
+.product__tag { border-radius: 999px; }
+.products--duo .product__placard { padding: var(--s-2) var(--s-3) var(--s-3); border-top: 0; }
+.products--duo .product__name { font-size: var(--step-2); }
+.sub-nudge {
+  display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: var(--s-3);
+  min-height: 48px; margin-top: var(--s-2); padding: var(--s-2) var(--s-3);
+  border-radius: var(--radius); background: var(--paper-2); color: var(--ink); text-decoration: none; font-size: 0.875rem; line-height: 1.35;
+  transition: background-color 0.3s;
+}
+.sub-nudge:hover, .sub-nudge:focus-visible { background: var(--paper-3); }
+.sub-nudge__tag { padding: 0.3em 0.65em 0.25em; border-radius: 999px; background: var(--ink); color: var(--paper); font-family: var(--font-mono); font-size: 0.6875rem; letter-spacing: 0.05em; text-transform: uppercase; }
+.sub-nudge__arrow { display: inline-grid; }
+.sub-nudge:hover .btn__arrow, .sub-nudge:focus-visible .btn__arrow { transform: translateX(3px); }
+.chip span { min-height: 44px; font-size: 0.8125rem; }
+
+/* ---------- Subscription: the main pitch ---------- */
+.box { background: transparent; padding-top: 0; }
+.box__panel {
+  display: grid; gap: var(--s-6);
+  padding: clamp(1.5rem, 0.75rem + 3vw, 3.5rem);
+  border-radius: var(--radius-lg); border: 1px solid var(--line);
+  background: linear-gradient(180deg, var(--white), var(--paper-2));
+  box-shadow: var(--shadow-1);
+}
+.box__intro { display: grid; gap: var(--s-4); align-content: start; }
+.box__eyebrow { display: inline-flex; align-items: center; gap: 0.6em; }
+.box__pulse { position: relative; width: 8px; height: 8px; border-radius: 50%; background: var(--bronze); }
+@media (prefers-reduced-motion: no-preference) {
+  .box__pulse::after { content: ""; position: absolute; inset: 0; border-radius: 50%; background: var(--bronze); animation: pulse 2.4s var(--ease-out) infinite; }
+}
+@keyframes pulse { 0% { scale: 1; opacity: 0.6; } 100% { scale: 3; opacity: 0; } }
+.box__intro h2 { font-size: var(--step-3); }
+.box__lede { color: var(--ink-2); font-size: var(--step-1); line-height: 1.5; max-width: 30rem; }
+.box__perks { display: grid; gap: var(--s-3); margin-top: var(--s-2); }
+.box__perks li { display: grid; grid-template-columns: 28px 1fr; gap: var(--s-3); align-items: start; font-size: 0.9375rem; color: var(--ink-2); }
+.box__perks strong { color: var(--ink); font-weight: 600; }
+.box__perks svg { width: 28px; height: 28px; padding: 5px; border-radius: 50%; background: var(--ink); color: var(--paper); }
+.box__note { font-size: 0.8125rem; color: var(--muted); max-width: 30rem; }
+.box__note strong { color: var(--ink-2); }
+.subs { gap: var(--s-4); align-items: stretch; }
+.sub { gap: var(--s-3); border: 1px solid var(--line); border-top: 1px solid var(--line); border-radius: calc(var(--radius) + 4px); background: var(--white); padding: clamp(1.25rem, 0.9rem + 1.2vw, 1.75rem); }
+.sub__top { display: flex; justify-content: space-between; align-items: center; gap: var(--s-3); }
+.sub__flag { padding: 0.3em 0.7em 0.25em; border-radius: 999px; background: var(--bronze-dark); color: var(--ink); font-family: var(--font-mono); font-size: 0.6875rem; letter-spacing: 0.05em; text-transform: uppercase; white-space: nowrap; }
+.sub__name { font-size: var(--step-2); }
+.sub__name span { font-size: var(--step-0); }
+.sub__price strong { font-size: var(--step-3); letter-spacing: -0.045em; line-height: 1; }
+.sub__per { font-size: 0.875rem; color: var(--ink-2); }
+.sub .box__list li { font-size: 0.875rem; }
+.sub-card--featured .sub { background: var(--ink); color: var(--paper); border-color: var(--ink); box-shadow: var(--shadow-2); }
+.sub-card--featured .label, .sub-card--featured .sub__per, .sub-card--featured .save-note, .sub-card--featured .sub__name span { color: #cfcac2; }
+.sub-card--featured .box__list li { border-top-color: rgb(255 255 255 / 0.14); }
+.sub-card--featured .box__list li::before { border-top-color: var(--bronze-dark); }
+.sub-card--featured .save-badge { background: var(--paper); color: var(--ink); }
+.sub-card--featured .chip span { border-color: rgb(255 255 255 / 0.3); }
+.sub-card--featured .chip input:hover + span { border-color: var(--paper); }
+.sub-card--featured .chip input:checked + span { background: var(--paper); border-color: var(--paper); color: var(--ink); }
+.sub-card--featured .chip input:focus-visible + span, .sub-card--featured :focus-visible { outline-color: var(--paper); }
+.sub-card--featured .add-btn { --btn-bg: var(--paper); --btn-fg: var(--ink); --btn-fill: var(--bronze-dark); --btn-fill-fg: var(--ink); border-color: var(--paper); }
+.sub-card--featured .add-btn.is-added { color: var(--ink); }
+@media (min-width: 60rem) {
+  .box__intro { grid-template-columns: 1fr 1fr; column-gap: var(--s-8); row-gap: var(--s-4); }
+  .box__intro > :is(.box__eyebrow, h2, .box__lede) { grid-column: 1; }
+  .box__perks { grid-column: 2; grid-row: 1 / span 3; align-self: end; margin-top: 0; }
+  .box__note { grid-column: 2; }
+}
+
+/* ---------- Quality ---------- */
+.quality { background: var(--white); }
+.fiber { padding: var(--s-5); border: 1px solid var(--line); border-top: 2px solid var(--ink); border-radius: 4px 4px var(--radius) var(--radius); background: var(--paper); }
+.fiber__icon { background: var(--white); width: 32px; height: 32px; padding: 12px; }
+.mix__bar { height: 10px; }
+.mix__seg { border-radius: 999px; }
+
+/* ---------- Product page ---------- */
+.pdp-sub {
+  display: grid; gap: var(--s-3); margin-top: var(--s-5); padding: var(--s-5);
+  border-radius: calc(var(--radius) + 4px); background: var(--ink); color: var(--paper); box-shadow: var(--shadow-2);
+}
+.pdp-sub :focus-visible { outline-color: var(--paper); }
+.pdp-sub__head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: var(--s-2); }
+.pdp-sub__label { color: #cfcac2; }
+.pdp-sub .save-badge { background: var(--paper); color: var(--ink); }
+.pdp-sub__title { font-size: var(--step-1); letter-spacing: -0.02em; margin: 0; }
+.pdp-sub__price { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--s-2); }
+.pdp-sub__price strong { font-size: var(--step-2); font-weight: 600; letter-spacing: -0.03em; }
+.pdp-sub__price span, .pdp-sub__text { color: #cfcac2; font-size: 0.875rem; }
+.pdp-sub .btn { --btn-bg: var(--paper); --btn-fg: var(--ink); --btn-fill: var(--bronze-dark); --btn-fill-fg: var(--ink); border-color: var(--paper); }
+.gallery img { border-radius: var(--radius); }
+.pdp__price strong { font-size: var(--step-3); letter-spacing: -0.045em; }
+
+/* ---------- FAQ, newsletter, misc ---------- */
+.faq summary { padding: var(--s-4) 0; }
+.news__field input { min-height: 48px; background: var(--white); }
+.why__media .frame, .box__media { border-radius: var(--radius); }
+.cart-item img { border-radius: 8px; }
+
+/* ---------- Social icons in brand colors ----------
+   Simple Icons marks as solid fills on solid tiles. Whole-pixel tile and
+   glyph sizes, no filters, no opacity, so the marks stay sharp at 1x and 2x.
+   Instagram: gradient tile, white mark. TikTok: black tile, white mark with
+   cyan and red offset copies drawn as vector paths. X: black tile, white mark
+   (white tile, black mark on the black footer). Labels carry the names. */
+.socials, .header-socials { gap: 10px; }
+a.soc {
+  display: inline-grid; place-items: center; box-sizing: border-box;
+  width: 44px; height: 44px; border: 0; border-radius: 12px;
+  color: #fff; background: #000; text-decoration: none;
+  transition: translate 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out);
+}
+a.soc svg { display: block; width: 24px; height: 24px; fill: currentColor; filter: none; }
+a.soc--tiktok svg { width: 26px; height: 26px; }
+a.soc--instagram { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285aeb 90%); }
+.header-socials a.soc { width: 40px; height: 40px; margin: 0; border-radius: 11px; }
+.header-socials a.soc svg { width: 22px; height: 22px; }
+.header-socials a.soc--tiktok svg { width: 24px; height: 24px; }
+.site-footer a.soc--x { color: #000; background: #fff; }
+.site-footer a.soc--tiktok { box-shadow: inset 0 0 0 1px #4a4740; }
+a.soc:hover, a.soc:focus-visible { translate: 0 -2px; box-shadow: 0 8px 18px -10px rgb(17 17 17 / 0.6); }
+.site-footer a.soc:hover, .site-footer a.soc:focus-visible { box-shadow: 0 0 0 1px #4a4740, 0 8px 18px -8px rgb(0 0 0 / 0.9); }
+/* Keep tile colors on hover; only the old generic .socials hover swapped them. */
+.socials a.soc:hover, .socials a.soc:focus-visible, .header-socials a.soc:hover, .header-socials a.soc:focus-visible { color: #fff; background-color: #000; border-color: transparent; }
+.socials a.soc--instagram:hover, .socials a.soc--instagram:focus-visible, .header-socials a.soc--instagram:hover, .header-socials a.soc--instagram:focus-visible { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285aeb 90%); }
+.site-footer .socials a.soc--x:hover, .site-footer .socials a.soc--x:focus-visible { color: #000; background: #fff; }
+a.soc:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+.site-footer a.soc:focus-visible { outline-color: var(--paper); }
+@media (prefers-reduced-motion: reduce) { a.soc:hover, a.soc:focus-visible { translate: none; } }
+@media (max-width: 59.99rem) { .trust__list li:last-child:nth-child(odd) { grid-column: 1 / -1; } }
+.mobile-socials .socials { display: flex; flex-wrap: wrap; gap: var(--s-2); }
