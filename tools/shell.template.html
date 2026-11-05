@@ -60,6 +60,9 @@
       <img class="wordmark__plain" src="{{ROOT}}assets/brand/strumpverket-wordmark-plain-black.svg" width="2114" height="207" alt="" decoding="async">
     </a>
     <div class="header-right">
+      <ul class="header-socials" aria-label="Sociala medier">
+        {{SOCIALS}}
+      </ul>
       <button class="icon-btn" type="button" data-open-cart aria-haspopup="dialog" aria-controls="varukorg" aria-label="Varukorg, 0 varor">
         <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 8h14l-1.2 12H6.2L5 8Z M9 8V6.5a3 3 0 0 1 6 0V8" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
         <span class="cart-count" data-count="0" aria-hidden="true">0</span>
@@ -75,6 +78,12 @@
       <li><a href="{{ROOT}}#fragor">Frågor</a></li>
       <li><a href="{{ROOT}}storleksguide/">Storleksguide</a></li>
     </ul>
+    <div class="wrap mobile-socials">
+      <p class="label">Följ oss</p>
+      <ul class="socials socials--light" aria-label="Sociala medier">
+        {{SOCIALS}}
+      </ul>
+    </div>
   </nav>
 </header>
 

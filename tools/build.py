@@ -18,7 +18,7 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 SITE = "https://strumpverket.se"
 ASSET_ORIGIN = SITE
 
-LASTMOD = "2026-11-03"
+LASTMOD = "2026-11-05"
 OG_HOME = f"{ASSET_ORIGIN}/assets/og.jpg?v=3"
 OG_HOME_ALT = "Strumpverkets logotyp, en svart skylt med texten STRUMPVERKET, bredvid rubriken Svarta strumpor. Inget annat."
 MATERIAL = "78\u00a0% viskos från bambu, 18\u00a0% polyamid, 4\u00a0% lycra."
@@ -41,9 +41,9 @@ def icon_path(name):
     return re.search(r' d="([^"]+)"', svg).group(1)
 
 SOCIAL = [
-    ("instagram", "Instagram", "https://www.instagram.com/strumpverket/"),
-    ("x", "X", "https://x.com/strumpverket"),
-    ("tiktok", "TikTok", "https://www.tiktok.com/@strumpverket"),
+    ("instagram", "Instagram", "https://www.instagram.com/strumpverket"),
+    ("x", "X", "https://x.com/STRUMPVERKET"),
+    ("tiktok", "TikTok", "https://www.tiktok.com/@strumpverket.se"),
 ]
 socials = "\n".join(
     f'<li><a href="{url}" target="_blank" rel="noopener noreferrer" aria-label="STRUMPVERKET på {label}"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="{icon_path(n)}"/></svg></a></li>'
@@ -197,7 +197,7 @@ for i, sb in enumerate(SUBS):
 mat_pic = picture("material", MAT_ALT, "(min-width: 60rem) 46vw, 92vw", [640, 1024], 1024, 768)
 
 FAQ = [
- ("Kan jag beställa redan nu?", "Inte riktigt än. Du kan lägga 5-pack, 10-pack och prenumerationer i varukorgen, men kassan är inte öppen. Inga köp genomförs, ingen betalning dras och inga uppgifter skickas. Följ @strumpverket på Instagram, X eller TikTok så får du veta när vi öppnar."),
+ ("Kan jag beställa redan nu?", "Inte riktigt än. Du kan lägga 5-pack, 10-pack och prenumerationer i varukorgen, men kassan är inte öppen. Inga köp genomförs, ingen betalning dras och inga uppgifter skickas. Följ oss på Instagram (@strumpverket), X (@STRUMPVERKET) och TikTok (@strumpverket.se) så får du veta när vi öppnar."),
  ("Vad kostar frakten?", f"Frakten kostar {SHIPPING} kr per beställning och tillkommer på priset för 5-pack och 10-pack. Vi skickar med PostNord direkt till din brevlåda. I prenumerationen ingår frakten."),
  ("Hur fungerar prenumerationen?", "Du väljer mellan två upplägg. " + " ".join(
      f'{BY_ID[sb["pack"]]["name"]} {sb["every"]} för {sb["price"]} kr inkl. frakt, {sb["saved"]} kr mindre än ett vanligt köp med frakt ({sb["oneoff"]} kr).' for sb in SUBS)

@@ -29,7 +29,7 @@ Båda är självhostade som woff2, subsettade till latin (inkl. å, ä, ö).
 
 ## Ikoner
 Sociala ikoner (Instagram, X, TikTok) från Simple Icons, CC0 1.0. https://simpleicons.org/
-De länkar till @strumpverket. YouTube, Facebook och Pinterest visas inte.
+De länkar till Instagram @strumpverket, X @STRUMPVERKET och TikTok @strumpverket.se. YouTube, Facebook och Pinterest visas inte.
 
 ## Betalmärken
 Varumärkena tillhör respektive ägare. Märkena visas som exempel på planerade betalsätt. Butiken tar inte betalt ännu. Filerna är oförändrade utom att Mastercard-filen har fått `viewBox` så den skalar jämnt. Proportioner och färger är inte ändrade.

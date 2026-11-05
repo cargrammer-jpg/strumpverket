@@ -591,6 +591,61 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 }
 .socials svg { width: 18px; height: 18px; fill: currentColor; }
 .socials-col { grid-column: 1 / -1; }
+
+/* Header socials: same 44px targets, ink on paper. Shown from the masthead
+   breakpoint so the sticky bar stays uncrowded on phones and small tablets. */
+.header-socials {
+  display: none;
+  align-items: center;
+  gap: 2px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.header-socials a {
+  display: inline-grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  color: var(--ink);
+  border: 1px solid transparent;
+  transition: background-color 0.3s, border-color 0.3s, translate 0.3s var(--ease-out);
+}
+.header-socials a:hover,
+.header-socials a:focus-visible {
+  background: var(--paper-2);
+  border-color: var(--line);
+  translate: 0 -2px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .header-socials a:hover,
+  .header-socials a:focus-visible { translate: none; }
+}
+.header-socials svg { width: 18px; height: 18px; fill: currentColor; }
+@media (min-width: 64rem) {
+  .header-socials { display: flex; }
+}
+
+/* Light socials (mobile menu): paper background, dark ring. */
+.socials--light a {
+  color: var(--ink);
+  border-color: var(--line);
+}
+.socials--light a:hover,
+.socials--light a:focus-visible {
+  background: var(--ink);
+  color: var(--paper);
+  border-color: var(--ink);
+}
+.mobile-socials {
+  display: grid;
+  gap: var(--s-3);
+  padding-bottom: var(--s-5);
+  border-top: 1px solid var(--line);
+  padding-top: var(--s-4);
+}
+.mobile-socials .label { margin: 0; }
 .pay-block { margin-top: var(--s-8); }
 .pay-block h2 {
   font-family: var(--font-mono);
