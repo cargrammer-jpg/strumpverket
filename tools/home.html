@@ -138,6 +138,42 @@
     </div>
   </section>
 
+  <section class="section stars" id="recensioner" aria-labelledby="stars-title">
+    <div class="wrap">
+      <div class="section-head" data-reveal>
+        <div>
+          <p class="label">Recensioner</p>
+          <h2 id="stars-title">Inga recensioner än.</h2>
+        </div>
+        <p>Bli först att ge oss fem stjärnor. Korten nedan är inbjudningar, inte kundomdömen.</p>
+      </div>
+      <div class="stars-carousel" data-stars-carousel>
+        <button type="button" class="stars-nav stars-nav--prev" data-stars-prev aria-controls="stars-track" aria-label="Visa föregående kort">
+          <svg viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M17 10H4M9 5L4 10l5 5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+        </button>
+        <div class="stars-viewport">
+          <ul class="stars-track" id="stars-track" role="list" tabindex="0" aria-label="Inbjudningar till att skriva en recension" data-stars-track>
+            <!-- Filled by assets/js/main.js from STAR_INVITES. No-JS fallback below stays hidden when JS runs. -->
+          </ul>
+          <noscript>
+            <ul class="stars-track stars-track--static" role="list">
+              <li class="stars-card" role="listitem">
+                <p class="stars-card__badge label">Inbjudan</p>
+                <div class="stars-row" aria-hidden="true"><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span></div>
+                <p class="stars-card__text">Här kan din recension stå.</p>
+                <a class="btn btn--ghost stars-card__cta" href="#prenumeration">Prenumerera</a>
+              </li>
+            </ul>
+          </noscript>
+        </div>
+        <button type="button" class="stars-nav stars-nav--next" data-stars-next aria-controls="stars-track" aria-label="Visa nästa kort">
+          <svg viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M3 10h13M11 5l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+        </button>
+      </div>
+      <p class="stars__note label" data-reveal>Inga kundrecensioner ännu. När de finns ersätter de inbjudningarna här.</p>
+    </div>
+  </section>
+
   <section class="moment" aria-labelledby="moment-title">
     <div class="wrap moment__inner">
       <h2 id="moment-title" class="visually-hidden">Strumpverket</h2>

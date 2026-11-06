@@ -250,6 +250,96 @@
     news.reset();
   });
 
+
+  /* ---------- Stars invite carousel ----------
+     No real customers yet: cards are invitations, never fake reviews.
+     When real reviews arrive, replace STAR_INVITES items with e.g.
+       { kind: "review", text: "...", name: "...", rating: 5 }
+     and extend renderStarsCard(). Do NOT emit schema.org Review or
+     AggregateRating markup until reviews are genuine. */
+  const STAR_INVITES = [
+    { kind: "invite", text: "Här kan din recension stå.", cta: "Prenumerera", href: "#prenumeration" },
+    { kind: "invite", text: "Fem stjärnor? Vi tror det.", cta: "Prenumerera", href: "#prenumeration" },
+    { kind: "invite", text: "Ska du köpa igen? Vi håller tummarna.", cta: "Prenumerera", href: "#prenumeration" },
+    { kind: "invite", text: "Bästa kvalitén, bedöm själv.", cta: "Prenumerera", href: "#prenumeration" },
+    { kind: "invite", text: "Bli först med fem stjärnor.", cta: "Prenumerera", href: "#prenumeration" },
+  ];
+
+  const renderStarsCard = (item, index) => {
+    const li = document.createElement("li");
+    li.className = "stars-card";
+    li.setAttribute("role", "listitem");
+    li.style.setProperty("--tw", `${(index % 3) * 0.25}s`);
+
+    const badge = document.createElement("p");
+    badge.className = "stars-card__badge label";
+    badge.textContent = item.kind === "review" ? "Recension" : "Inbjudan";
+    li.appendChild(badge);
+
+    const row = document.createElement("div");
+    row.className = "stars-row";
+    row.setAttribute("aria-hidden", "true");
+    for (let i = 0; i < 5; i++) {
+      const s = document.createElement("span");
+      s.className = "star";
+      s.style.setProperty("--i", String(i));
+      row.appendChild(s);
+    }
+    li.appendChild(row);
+
+    const text = document.createElement("p");
+    text.className = "stars-card__text";
+    text.textContent = item.text;
+    li.appendChild(text);
+
+    if (item.kind === "invite") {
+      const a = document.createElement("a");
+      a.className = "btn btn--ghost stars-card__cta";
+      a.href = item.href || "#prenumeration";
+      a.textContent = item.cta || "Prenumerera";
+      li.appendChild(a);
+    }
+    return li;
+  };
+
+  const starsRoot = document.querySelector("[data-stars-carousel]");
+  if (starsRoot) {
+    const track = starsRoot.querySelector("[data-stars-track]");
+    const prev = starsRoot.querySelector("[data-stars-prev]");
+    const next = starsRoot.querySelector("[data-stars-next]");
+    if (track) {
+      track.replaceChildren(...STAR_INVITES.map(renderStarsCard));
+
+      const cardStep = () => {
+        const card = track.querySelector(".stars-card");
+        if (!card) return 280;
+        const styles = getComputedStyle(track);
+        const gap = parseFloat(styles.columnGap || styles.gap || "16") || 16;
+        return card.getBoundingClientRect().width + gap;
+      };
+      const syncNav = () => {
+        if (!prev || !next) return;
+        const max = track.scrollWidth - track.clientWidth - 2;
+        prev.disabled = track.scrollLeft <= 2;
+        next.disabled = track.scrollLeft >= max;
+      };
+      const scrollByDir = (dir) => {
+        track.scrollBy({ left: dir * cardStep(), behavior: reduce.matches ? "auto" : "smooth" });
+      };
+      prev?.addEventListener("click", () => scrollByDir(-1));
+      next?.addEventListener("click", () => scrollByDir(1));
+      track.addEventListener("scroll", syncNav, { passive: true });
+      track.addEventListener("keydown", (e) => {
+        if (e.key === "ArrowRight") { e.preventDefault(); scrollByDir(1); }
+        else if (e.key === "ArrowLeft") { e.preventDefault(); scrollByDir(-1); }
+        else if (e.key === "Home") { e.preventDefault(); track.scrollTo({ left: 0, behavior: reduce.matches ? "auto" : "smooth" }); }
+        else if (e.key === "End") { e.preventDefault(); track.scrollTo({ left: track.scrollWidth, behavior: reduce.matches ? "auto" : "smooth" }); }
+      });
+      window.addEventListener("resize", syncNav, { passive: true });
+      syncNav();
+    }
+  }
+
   /* Footer year */
   document.querySelectorAll("[data-year]").forEach((el) => { el.textContent = new Date().getFullYear(); });
 })();
