@@ -1100,7 +1100,7 @@ a.soc:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
   --ink-2: #3c3934;
   --muted: #6a645c;
   --line: #cfc6ba;
-  --bronze: #8a6a3c;      /* text/icons on light, ~5.3:1 on --paper */
+  --bronze: #74542c;      /* text/icons on light, AA on --paper */
   --bronze-dark: #b08d57; /* brass on charcoal */
   --thread: var(--bronze);
   --shadow-1: 0 1px 2px rgb(22 21 20 / 0.05), 0 6px 18px -8px rgb(22 21 20 / 0.12);
