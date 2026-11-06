@@ -1,0 +1,269 @@
+/* ============================================================
+   Theme: Mörk lyx (preview)
+   Near-black showroom, lifted surfaces, soft spotlight on socks.
+   Inspired by Daiviq dark architectural ecommerce.
+   ============================================================ */
+:root {
+  --paper: #0d0d0e;
+  --paper-2: #17171a;
+  --paper-3: #222228;
+  --white: #1c1c21;
+  --ink: #f3f1ec;
+  --ink-2: #c9c4bb;
+  --muted: #9a958c;
+  --line: #2c2c33;
+  --bronze: #c9a66a;       /* on dark surfaces */
+  --bronze-dark: #b08d57;  /* restrained accent */
+  --thread: var(--bronze);
+  --shadow-1: 0 1px 0 rgb(255 255 255 / 0.04), 0 8px 24px -12px rgb(0 0 0 / 0.7);
+  --shadow-2: 0 1px 0 rgb(255 255 255 / 0.06), 0 28px 56px -24px rgb(0 0 0 / 0.85);
+  color-scheme: dark;
+}
+
+body { background: var(--paper); color: var(--ink); }
+
+.site-header {
+  background: color-mix(in srgb, var(--paper) 86%, transparent);
+  border-bottom-color: transparent;
+}
+.site-header.is-scrolled { border-bottom-color: var(--line); }
+.nav a, .wordmark { color: var(--ink); }
+.icon-btn:hover { background: var(--paper-2); }
+.mobile-nav { border-top-color: var(--line); }
+.mobile-nav a { color: var(--ink); }
+
+.demo-bar { background: #050505; color: var(--ink); }
+.demo-bar__tag { color: #8a8580; }
+.demo-bar__link { color: var(--ink); }
+.demo-bar :focus-visible { outline-color: var(--ink); }
+
+.sub-cta { background: var(--ink); color: var(--paper); }
+.sub-cta:hover, .sub-cta:focus-visible { background: #ffffff; color: #0d0d0e; }
+.sub-cta__tag { background: var(--paper); color: var(--ink); }
+
+.hero__panel {
+  border-color: #2a2a31;
+  background:
+    radial-gradient(120% 80% at 80% 0%, rgb(176 141 87 / 0.12), transparent 55%),
+    linear-gradient(160deg, #17171b 0%, #121216 100%);
+  color: var(--ink);
+  box-shadow: 0 0 0 1px rgb(255 255 255 / 0.04), 0 30px 60px -34px rgb(0 0 0 / 0.9);
+}
+.hero__panel .label,
+.hero__sub-note,
+.hero__spec dt { color: #9e9890; }
+.hero__lede, .hero__promise { color: var(--ink-2); }
+.hero__promise strong { color: var(--ink); }
+.hero__sub-note strong { color: var(--ink); }
+.hero__seal { background: var(--ink); color: var(--paper); }
+.hero__seal::before { background: var(--bronze); }
+.hero__cta .btn--ghost {
+  --btn-bg: transparent;
+  --btn-fg: var(--ink);
+  --btn-fill: var(--ink);
+  --btn-fill-fg: var(--paper);
+  border-color: rgb(243 241 236 / 0.4);
+}
+.hero__cta .btn:not(.btn--ghost) {
+  --btn-bg: var(--ink);
+  --btn-fg: var(--paper);
+  --btn-fill: var(--bronze);
+  --btn-fill-fg: #0d0d0e;
+  border-color: var(--ink);
+}
+.hero__media {
+  position: relative;
+}
+.hero__media::before {
+  content: "";
+  position: absolute;
+  inset: -8% -4% -12%;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 55% 50% at 50% 48%, rgb(255 248 235 / 0.18), transparent 70%),
+    radial-gradient(ellipse 40% 35% at 70% 30%, rgb(176 141 87 / 0.12), transparent 65%);
+}
+.hero__frame {
+  position: relative;
+  z-index: 1;
+  background: #0a0a0c;
+  border-radius: var(--radius);
+  box-shadow:
+    0 0 0 1px rgb(255 255 255 / 0.08),
+    0 30px 60px -28px rgb(0 0 0 / 0.95);
+}
+.hero__spec { border-top-color: rgb(255 255 255 / 0.18); }
+.media-toggle {
+  background: color-mix(in srgb, #17171a 92%, transparent);
+  color: var(--ink);
+  box-shadow: 0 0 0 1px rgb(255 255 255 / 0.1);
+}
+
+.trust { border: 0; }
+.trust__list li {
+  background: var(--paper-2);
+  border-color: var(--line);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.03);
+}
+.trust__value { color: var(--ink); }
+
+.section-head > p { color: var(--ink-2); }
+.callout {
+  background: var(--paper-2);
+  border-color: var(--bronze);
+  color: var(--ink-2);
+}
+
+.products--duo .product-card,
+.product-card {
+  background: var(--paper-2);
+  border-color: var(--line);
+  box-shadow: var(--shadow-1);
+}
+.products--duo .product-card:hover,
+.products--duo .product-card:focus-within {
+  border-color: #3d3d46;
+  box-shadow: var(--shadow-2);
+}
+.product__media { background: #0a0a0c; }
+.chip {
+  border-color: var(--line);
+  color: var(--ink);
+}
+.chip:hover, .chip:has(:checked) {
+  border-color: var(--ink);
+  background: var(--ink);
+  color: var(--paper);
+}
+.add-btn {
+  --btn-bg: transparent;
+  --btn-fg: var(--ink);
+  --btn-fill: var(--ink);
+  --btn-fill-fg: var(--paper);
+  border-color: var(--ink);
+}
+
+.box__panel {
+  background: var(--paper-2);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-1);
+}
+.box__lede, .box__note, .box__perks { color: var(--ink-2); }
+.box__perks strong { color: var(--ink); }
+.box__perks svg {
+  border-color: var(--line);
+  color: var(--bronze);
+}
+.box__pulse { background: var(--bronze); }
+.sub {
+  background: #141418;
+  border: 1px solid var(--line);
+  color: var(--ink);
+}
+.sub-card--featured .sub {
+  background: #101014;
+  border-color: var(--bronze);
+  box-shadow: 0 0 0 1px rgb(176 141 87 / 0.25), var(--shadow-2);
+}
+
+.quality__close,
+.fibers .fiber {
+  background: var(--paper-2);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+.fiber__icon { color: var(--bronze); }
+
+.moment {
+  background: #080809;
+  color: var(--ink);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.04);
+}
+.moment .stitch-divider { color: var(--bronze); }
+
+.why__media .frame {
+  background: #0a0a0c;
+  box-shadow: 0 0 0 1px rgb(255 255 255 / 0.06), 0 24px 48px -28px rgb(0 0 0 / 0.8);
+}
+.points li { border-top-color: var(--line); }
+
+.faq details { border-color: var(--line); }
+.faq .answer { color: var(--ink-2); }
+.faq summary .plus::before,
+.faq summary .plus::after { background: var(--ink); }
+
+.news { border-top-color: var(--line); }
+.news__field input {
+  background: var(--paper-2);
+  border-color: var(--line);
+  color: var(--ink);
+}
+.news__field input::placeholder { color: var(--muted); }
+.news__note { color: var(--muted); }
+
+.btn {
+  --btn-bg: var(--ink);
+  --btn-fg: var(--paper);
+  --btn-fill: var(--bronze);
+  --btn-fill-fg: #0d0d0e;
+  border-color: var(--ink);
+}
+.btn--ghost {
+  --btn-bg: transparent;
+  --btn-fg: var(--ink);
+  --btn-fill: var(--ink);
+  --btn-fill-fg: var(--paper);
+  border-color: rgb(243 241 236 / 0.4);
+}
+
+.cart {
+  background: var(--paper-2);
+  color: var(--ink);
+}
+.cart__head, .cart__foot, .cart-item { border-color: var(--line); }
+.qty { border-color: var(--line); }
+.toast { background: var(--ink); color: var(--paper); }
+
+.site-footer { background: #050506; color: var(--ink); }
+.site-footer a { color: var(--ink); }
+.footer-cols h2 { color: #8a8580; }
+.footer-base, .footer-base .label { color: #8a8580; }
+.footer-mark .mark text { fill: var(--ink); }
+.footer-mark .stitch-divider { color: var(--bronze); }
+
+/* X white on dark footer; IG/TikTok keep brand colours */
+.site-footer a.soc--x,
+.site-footer .socials a.soc--x:hover,
+.site-footer .socials a.soc--x:focus-visible {
+  color: #fff;
+  background: #000;
+  border-color: #3a3a40;
+}
+.header-socials a.soc--x {
+  color: #fff;
+  background: #000;
+  border-color: #3a3a40;
+}
+.site-footer a.soc--tiktok { box-shadow: inset 0 0 0 1px #3a3a40; }
+
+.pay-badge,
+.pay-badge--mark {
+  background: #fff;
+  padding: 4px 10px;
+  border-radius: 6px;
+}
+.pay-badge--mark img { height: 24px; }
+
+.pdp, .table-wrap, .mix { color: var(--ink); }
+.table-wrap { border-color: var(--line); }
+
+:focus-visible { outline-color: var(--ink); }
+.site-footer :focus-visible,
+.moment :focus-visible { outline-color: var(--ink); }
+
+/* Logo plates are black artwork; invert so they read on near-black chrome. */
+.wordmark__plate,
+.wordmark__plain { filter: invert(1); }
+.site-header.is-scrolled .wordmark__plain { filter: invert(1); }
