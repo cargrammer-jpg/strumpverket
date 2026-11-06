@@ -38,6 +38,10 @@
      #8c5e36 on paper 5.15:1, #b8845a on ink 5.83:1. Never use the old #a0703f / #9a6b3f. */
   --bronze: #8c5e36;      /* on light grounds */
   --bronze-dark: #b8845a; /* on ink */
+  /* Live/active status dots only. Fresh green that sits on the warm paper
+     without going neon; the brighter pair is for the same dots on ink. */
+  --live: #1f8a4c;        /* on light grounds */
+  --live-bright: #3ccf74; /* on ink */
   --thread: var(--bronze);
 
   --font-sans: "Schibsted Grotesk", "Grotesk Fallback", system-ui, sans-serif;
@@ -876,7 +880,7 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .site-header > .wrap { max-width: calc(var(--max) + 10rem); }
 .site-header { background: color-mix(in srgb, var(--paper) 90%, transparent); }
 .nav a { font-size: 0.875rem; font-weight: 500; }
-.nav__sub::before { content: ""; width: 6px; height: 6px; margin-right: 0.45em; border-radius: 50%; background: var(--bronze); }
+.nav__sub::before { content: ""; width: 6px; height: 6px; margin-right: 0.45em; border-radius: 50%; background: var(--live); }
 .sub-cta { display: none; align-items: center; gap: 0.5rem; min-height: 40px; padding: 0 0.4rem 0 1rem; margin-right: var(--s-2);
   border-radius: 999px; background: var(--ink); color: var(--paper); font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.01em; text-decoration: none;
   transition: background-color 0.3s, translate 0.4s var(--ease-out), box-shadow 0.4s var(--ease-out); }
@@ -912,7 +916,7 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .hero__eyebrow { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s-2) var(--s-3); }
 .hero__seal { display: inline-flex; align-items: center; gap: 0.5em; padding: 0.4em 0.85em 0.35em; border-radius: 999px;
   background: var(--ink); color: var(--paper); font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.06em; text-transform: uppercase; line-height: 1.3; }
-.hero__seal::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--bronze-dark); }
+.hero__seal::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--live-bright); }
 .hero h1 { letter-spacing: -0.045em; }
 .hero__lede { color: var(--ink-2); font-size: var(--step-1); }
 .hero__promise { color: var(--ink-2); border-top-color: #cfcdc7; font-size: 0.875rem; }
@@ -984,9 +988,9 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 }
 .box__intro { display: grid; gap: var(--s-4); align-content: start; }
 .box__eyebrow { display: inline-flex; align-items: center; gap: 0.6em; }
-.box__pulse { position: relative; width: 8px; height: 8px; border-radius: 50%; background: var(--bronze); }
+.box__pulse { position: relative; width: 8px; height: 8px; border-radius: 50%; background: var(--live); }
 @media (prefers-reduced-motion: no-preference) {
-  .box__pulse::after { content: ""; position: absolute; inset: 0; border-radius: 50%; background: var(--bronze); animation: pulse 2.4s var(--ease-out) infinite; }
+  .box__pulse::after { content: ""; position: absolute; inset: 0; border-radius: 50%; background: var(--live); animation: pulse 2.4s var(--ease-out) infinite; }
 }
 @keyframes pulse { 0% { scale: 1; opacity: 0.6; } 100% { scale: 3; opacity: 0; } }
 .box__intro h2 { font-size: var(--step-3); }
@@ -1147,7 +1151,7 @@ a.soc:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
 .stars-card__badge::before {
   content: "";
   width: 6px; height: 6px; border-radius: 50%;
-  background: var(--bronze);
+  background: var(--live);
 }
 .stars-card__text {
   font-size: var(--step-1);
