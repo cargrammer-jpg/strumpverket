@@ -1,0 +1,156 @@
+/* ============================================================
+   Theme: Varm sten (preview)
+   Warm sand page, charcoal alternating sections, brass accent.
+   Inspired by linen/showroom restraint (Asket/Daiviq linen side).
+   ============================================================ */
+:root {
+  --paper: #e9e4dc;
+  --paper-2: #f4efe7;
+  --paper-3: #ddd5c9;
+  --white: #faf7f2;
+  --ink: #161514;
+  --ink-2: #3c3934;
+  --muted: #6a645c;
+  --line: #cfc6ba;
+  --bronze: #8a6a3c;      /* text/icons on light, ~5.3:1 on --paper */
+  --bronze-dark: #b08d57; /* brass on charcoal */
+  --thread: var(--bronze);
+  --shadow-1: 0 1px 2px rgb(22 21 20 / 0.05), 0 6px 18px -8px rgb(22 21 20 / 0.12);
+  --shadow-2: 0 2px 6px rgb(22 21 20 / 0.06), 0 22px 44px -20px rgb(22 21 20 / 0.28);
+  color-scheme: light;
+}
+
+body { background: var(--paper); color: var(--ink); }
+
+.site-header {
+  background: color-mix(in srgb, var(--paper) 88%, transparent);
+}
+.site-header.is-scrolled { border-bottom-color: var(--line); }
+
+.hero__panel {
+  border-color: #d2c8ba;
+  background:
+    linear-gradient(165deg, #f3eee6 0%, #e6dfd4 55%, #ddd4c6 100%);
+  box-shadow: 0 1px 2px rgb(22 21 20 / 0.05), 0 28px 56px -30px rgb(22 21 20 / 0.35);
+}
+.hero__panel .label,
+.hero__sub-note,
+.hero__spec dt { color: #5a554d; }
+.hero__lede, .hero__promise { color: var(--ink-2); }
+.hero__frame {
+  background: #ebe4da;
+  box-shadow: 0 0 0 1px rgb(22 21 20 / 0.06), 0 24px 48px -28px rgb(22 21 20 / 0.4);
+}
+
+.trust__list li {
+  background: var(--white);
+  border-color: var(--line);
+  box-shadow: var(--shadow-1);
+}
+
+.products--duo .product-card,
+.product-card {
+  background: var(--white);
+  border-color: var(--line);
+  box-shadow: var(--shadow-1);
+}
+.products--duo .product-card:hover,
+.products--duo .product-card:focus-within {
+  border-color: #b9ae9f;
+  box-shadow: var(--shadow-2);
+}
+
+.callout { background: var(--paper-2); border-color: var(--bronze); }
+
+/* Alternating charcoal bands */
+#prenumeration,
+#om {
+  background: #161514;
+  color: #f4efe7;
+}
+#prenumeration .label,
+#om .label { color: #b5aea4; }
+#prenumeration .box__lede,
+#prenumeration .box__note,
+#prenumeration .box__perks,
+#om .why__note,
+#om .points p,
+#om .why__statement { color: #d8d2c8; }
+#prenumeration .box__lede,
+#om .why__statement { color: #f4efe7; }
+#prenumeration .box__perks strong,
+#om .points strong { color: #faf7f2; }
+#prenumeration .box__perks svg {
+  border-color: rgb(255 255 255 / 0.2);
+  color: var(--bronze-dark);
+}
+#prenumeration .box__panel {
+  background: #1e1c1a;
+  border: 1px solid #2e2b28;
+  border-radius: var(--radius-lg);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.04);
+}
+#prenumeration .box__pulse { background: var(--bronze-dark); }
+#prenumeration .sub {
+  background: #1a1816;
+  border-color: #35312c;
+  color: #f4efe7;
+}
+#prenumeration .sub .label { color: #b5aea4; }
+#prenumeration .sub-card--featured .sub {
+  background: #11100e;
+  border-color: var(--bronze-dark);
+  box-shadow: 0 18px 40px -22px rgb(0 0 0 / 0.7);
+}
+#prenumeration .btn--ghost,
+#om .btn--ghost {
+  --btn-bg: transparent;
+  --btn-fg: #f4efe7;
+  --btn-fill: #f4efe7;
+  --btn-fill-fg: #161514;
+  border-color: rgb(244 239 231 / 0.55);
+}
+#prenumeration .btn:not(.btn--ghost),
+#om .btn:not(.btn--ghost) {
+  --btn-bg: #f4efe7;
+  --btn-fg: #161514;
+  --btn-fill: var(--bronze-dark);
+  --btn-fill-fg: #161514;
+  border-color: #f4efe7;
+}
+#om .why__media .frame {
+  background: #2a2723;
+  box-shadow: 0 0 0 1px rgb(255 255 255 / 0.06);
+}
+#om .points li { border-top-color: #2e2b28; }
+#om :focus-visible,
+#prenumeration :focus-visible { outline-color: #f4efe7; }
+
+.quality { background: transparent; }
+.fibers .fiber,
+.quality__close {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-1);
+}
+.quality__close { padding: var(--s-5); }
+
+.news__field input { background: var(--white); border-color: var(--ink); }
+
+.hero__seal {
+  background: var(--ink);
+  color: var(--paper);
+}
+.hero__seal::before { background: var(--bronze-dark); }
+
+.site-footer { background: #121110; }
+.site-footer a.soc--x { color: #000; background: #fff; }
+.pay-badge,
+.pay-badge--mark { background: #fff; padding: 4px 10px; border-radius: 6px; }
+.pay-badge--mark img { height: 24px; }
+
+/* Soft brass ticks */
+.nav__sub::before,
+.box__list li::before { border-top-color: var(--bronze); }
+#prenumeration .box__list li::before { border-top-color: var(--bronze-dark); }
