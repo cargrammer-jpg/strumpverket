@@ -57,7 +57,7 @@
   --s-6: 2rem; --s-7: 3rem; --s-8: 4rem; --s-9: 6rem;
   --section: clamp(4rem, 2rem + 8.3vw, 8.75rem);
   --gutter: clamp(1.25rem, 0.6rem + 2.2vw, 2.5rem);
-  --max: 72rem;
+  --max: 86rem; /* was 72rem; ~+19% for wider desktop, type scale unchanged */
   --radius: 14px;
   --radius-lg: clamp(18px, 1rem + 1vw, 28px);
   --shadow-1: 0 1px 2px rgb(17 17 17 / 0.04), 0 4px 14px -6px rgb(17 17 17 / 0.08);

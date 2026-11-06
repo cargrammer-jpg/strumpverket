@@ -18,7 +18,7 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 SITE = "https://strumpverket.se"
 ASSET_ORIGIN = SITE
 
-LASTMOD = "2026-11-05"
+LASTMOD = "2026-11-06"
 OG_HOME = f"{ASSET_ORIGIN}/assets/og.jpg?v=3"
 OG_HOME_ALT = "Strumpverkets logotyp, en svart skylt med texten STRUMPVERKET, bredvid rubriken Svarta strumpor. Inget annat."
 MATERIAL = "78\u00a0% viskos från bambu, 18\u00a0% polyamid, 4\u00a0% lycra."
@@ -419,7 +419,7 @@ SHELL = (ROOT / "tools" / "shell.template.html").read_text()
 HOME = (ROOT / "tools" / "home.html").read_text()
 HOME_EXTRA = ('<link rel="preload" as="image" type="image/avif" '
               'imagesrcset="{{ROOT}}assets/img/hero-640.avif 640w, {{ROOT}}assets/img/hero-1280.avif 1280w" '
-              'imagesizes="(min-width: 72rem) 68rem, 90vw" fetchpriority="high">')
+              'imagesizes="(min-width: 86rem) 80rem, 90vw" fetchpriority="high">')
 
 def render(prefix, main, meta):
     html = SHELL.replace("{{MAIN}}", main).replace("{{SOCIALS}}", socials)
