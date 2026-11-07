@@ -57,7 +57,7 @@ def social_svg(n):
     return f'<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="{d}"/></svg>'
 
 socials = "\n".join(
-    f'<li><a class="soc soc--{n}" href="{url}" target="_blank" rel="noopener noreferrer" aria-label="STRUMPVERKET på {label}">{social_svg(n)}</a></li>'
+    f'<li><a class="soc soc--{n}" href="{url}" target="_blank" rel="noopener noreferrer" data-umami-event="social-{n}" aria-label="STRUMPVERKET på {label}">{social_svg(n)}</a></li>'
     for n, label, url in SOCIAL)
 SAME_AS = [url for _, _, url in SOCIAL]
 
@@ -134,9 +134,10 @@ def picture(img, alt, sizes, widths, w, h, lazy=True, priority=""):
 ARROW = '<svg class="btn__arrow" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M3 10h13M11 5l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>'
 CHECK = '<svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true" focusable="false"><path d="M4 10.5l4 4 8-9" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>'
 
-def add_button(label="Lägg i varukorg", desc=""):
+def add_button(label="Lägg i varukorg", desc="", event=""):
     d = f' aria-describedby="{desc}"' if desc else ""
-    return (f'<button class="btn add-btn" type="submit"{d}><span class="add-btn__label">{label}</span>'
+    e = f' data-umami-event="{event}"' if event else ""
+    return (f'<button class="btn add-btn" type="submit"{d}{e}><span class="add-btn__label">{label}</span>'
             f'<span class="add-btn__done" aria-hidden="true">{CHECK} Tillagd</span></button>')
 
 def size_fieldset(default="41-45"):
@@ -215,7 +216,7 @@ for i, sb in enumerate(SUBS):
       <li>Ungefär {sb["pct"]}\u00a0% lägre pris per leverans än ett vanligt köp med frakt</li>
     </ul>
     {size_fieldset()}
-    {add_button("Lägg prenumerationen i varukorg", desc="s-" + sb["id"])}
+    {add_button("Lägg prenumerationen i varukorg", desc="s-" + sb["id"], event="prenumeration-" + sb["pack"].split("-")[0])}
   </form>
 </li>''')
 
